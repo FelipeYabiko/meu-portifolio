@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Felipe Yabiko Nogueira | Software Engineer</title>
+    <meta name="description"
+        content="Portfolio of Felipe Yabiko Nogueira, Software Engineer specializing in Machine Learning, Android Development, and embedded systems.">
+
+    <!-- Fonts: Inter & Space Grotesk -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="loading">
+
+    <!-- Custom Cursor -->
+    <div class="cursor-dot"></div>
+    <div class="cursor-follower"></div>
+
+    <!-- Noise Overlay for texture -->
+    <div class="noise-overlay"></div>
+
+    <!-- Header Navigation -->
+    <header class="header">
+        <div class="header__inner">
+            <a href="#" class="logo magnetic" data-strength="20">F.Y<span class="accent-dot">.</span></a>
+
+            <nav class="nav">
+                <ul class="nav__list">
+                    <li><a href="#about" class="nav__link magnetic hover-reveal" data-strength="20">About</a></li>
+                    <li><a href="#projects" class="nav__link magnetic hover-reveal" data-strength="20">Projects</a></li>
+                    <li><a href="#experience" class="nav__link magnetic hover-reveal" data-strength="20">Experience</a>
+                    </li>
+                    <li><a href="https://www.linkedin.com/in/felipe-yabiko-b57574379/" target="_blank"
+                            class="btn --cta magnetic" data-strength="40"><span class="btn-text">Connect</span></a></li>
+                    <li><button class="lang-toggle magnetic" id="lang-toggle" data-strength="20">PT</button></li>
+                </ul>
+            </nav>
+
+            <button class="menu-toggle" aria-label="Toggle menu">
+                <span class="hamburger"></span>
+            </button>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero__container">
+                <div class="hero__content">
+                    <div class="reveal-mask">
+                        <p class="hero__subtitle">SOFTWARE ENGINEER <span class="accent">&</span> DATA ENTHUSIAST</p>
+                    </div>
+
+                    <h1 class="hero__title">
+                        <div class="reveal-mask"><span class="hero__title-line">Felipe Yabiko</span></div>
+                        <div class="reveal-mask"><span class="hero__title-line">Nogueira<span
+                                    class="accent-dot">.</span></span></div>
+                    </h1>
+
+                    <div class="reveal-mask">
+                        <p class="hero__description">Applying logic and mathematics to solve complex real-world
+                            problems. Specializing in <span class="accent">Machine Learning</span>, <span
+                                class="accent">Android Architectures</span>, and Embedded Systems.</p>
+                    </div>
+
+                    <div class="hero__actions reveal-fade">
+                        <a href="#projects" class="btn --cta --large magnetic" data-strength="50">
+                            <span class="btn-bg"></span>
+                            <span class="btn-text">Explore Work <svg width="20" height="20" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                                    <polyline points="12 5 19 12 12 19"></polyline>
+                                </svg></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="scroll-indicator">
+                <div class="mouse"></div>
+                <span class="scroll-text">SCROLL</span>
+            </div>
+        </section>
+
+        <!-- Skills Marquee Banner -->
+        <div class="marquee-container">
+            <div class="marquee-content">
+                <span>PYTHON</span><span class="separator">◆</span>
+                <span>MACHINE LEARNING</span><span class="separator">◆</span>
+                <span>KOTLIN</span><span class="separator">◆</span>
+                <span>ANDROID STUDIO</span><span class="separator">◆</span>
+                <span>PANDAS</span><span class="separator">◆</span>
+                <span>SCIKIT-LEARN</span><span class="separator">◆</span>
+                <span>JAVA</span><span class="separator">◆</span>
+                <span>FIREBASE</span><span class="separator">◆</span>
+                <span>PYTHON</span><span class="separator">◆</span>
+                <span>MACHINE LEARNING</span><span class="separator">◆</span>
+                <span>KOTLIN</span><span class="separator">◆</span>
+                <span>ANDROID STUDIO</span><span class="separator">◆</span>
+            </div>
+        </div>
+
+        <!-- Projects Showcase Section -->
+        <section id="projects" class="projects section-padding">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title reveal-text">Selected <br /> <span class="accent">Projects</span></h2>
+                    <p class="section-subtitle reveal-fade">A curated selection of academic and personal technical
+                        projects tackling predictive models, embedded system control, and AI integration.</p>
+                </div>
+
+                <div class="project-showcase">
+
+                    <!-- Project 1 -->
+                    <article class="project-row">
+                        <div class="project-row__info">
+                            <span class="project-row__number">01</span>
+                            <h3 class="project-row__title">Locker Control System</h3>
+                            <div class="project-tags">
+                                <span class="tag">Android / Kotlin</span>
+                                <span class="tag">NFC</span>
+                                <span class="tag">Firebase</span>
+                            </div>
+                            <p class="project-row__desc">An integrated locker access system using NFC authentication via
+                                smart wristbands. Built an intuitive mobile application for secure management.</p>
+                            <a href="https://github.com/FelipeYabiko/PI3-ES-2024-T26" target="_blank"
+                                class="view-project-link">View Repository <svg width="14" height="14"
+                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                                    <polyline points="12 5 19 12 12 19"></polyline>
+                                </svg></a>
+                        </div>
+                        <div class="project-row__image-wrap magnetic-container">
+                            <div class="project-row__image placeholder-pattern"
+                                style="background: linear-gradient(135deg, #1A1A1D 0%, #301014 100%);">
+                                <!-- Abstract visual representation -->
+                                <div class="abstract-shape shape-1"></div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Project 2 -->
+                    <article class="project-row reverse">
+                        <div class="project-row__info">
+                            <span class="project-row__number">02</span>
+                            <h3 class="project-row__title">Cancer Survival Predictor</h3>
+                            <div class="project-tags">
+                                <span class="tag">Machine Learning</span>
+                                <span class="tag">Python</span>
+                                <span class="tag">Scikit-learn</span>
+                            </div>
+                            <p class="project-row__desc">ML classification models predicting patient survival based on
+                                clinical data. Utilized PCA dimensionality reduction and hyperparameter tuning
+                                (GridSearchCV) on KNN and MLP architectures.</p>
+                            <a href="https://github.com/FelipeYabiko/RedeNeural" target="_blank"
+                                class="view-project-link">View Repository <svg width="14" height="14"
+                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                                    <polyline points="12 5 19 12 12 19"></polyline>
+                                </svg></a>
+                        </div>
+                        <div class="project-row__image-wrap magnetic-container">
+                            <div class="project-row__image placeholder-pattern"
+                                style="background: linear-gradient(135deg, #1A1A1D 0%, #102B30 100%);">
+                                <div class="abstract-shape shape-2"></div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Project 3 -->
+                    <article class="project-row">
+                        <div class="project-row__info">
+                            <span class="project-row__number">03</span>
+                            <h3 class="project-row__title">Economic Echo</h3>
+                            <div class="project-tags">
+                                <span class="tag">Android</span>
+                                <span class="tag">Gemini AI</span>
+                                <span class="tag">API</span>
+                            </div>
+                            <p class="project-row__desc">An Android application that aggregates economic news and
+                                utilizes the Gemini LLM API to generate automatic, real-time summaries and insights for
+                                users.</p>
+                            <a href="https://bitbucket.org/smartcapital-bitbucket/workspace/overview/" target="_blank"
+                                class="view-project-link">View Repository <svg width="14" height="14"
+                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                                    <polyline points="12 5 19 12 12 19"></polyline>
+                                </svg></a>
+                        </div>
+                        <div class="project-row__image-wrap magnetic-container">
+                            <div class="project-row__image placeholder-pattern"
+                                style="background: linear-gradient(135deg, #FF682C 0%, #512520 100%);">
+                                <div class="abstract-shape shape-3"></div>
+                            </div>
+                        </div>
+                    </article>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Experience & Education Section -->
+        <section id="experience" class="education section-padding">
+            <div class="container dual-grid">
+
+                <div class="resume-col">
+                    <h2 class="section-title reveal-text">Academic <br /> <span class="accent">Background</span></h2>
+
+                    <div class="timeline">
+                        <div class="timeline-item reveal-fade">
+                            <div class="timeline-dot"></div>
+                            <span class="timeline-date">Aug 2023 - Jul 2027</span>
+                            <h3 class="timeline-title">B.S. Software Engineering</h3>
+                            <p class="timeline-subtitle">PUC Campinas (SP, Brazil)</p>
+                            <p class="timeline-desc">Extensive academic training through practical, semester-long
+                                integrated projects focusing on full-stack development, ML, and software architecture.
+                            </p>
+                        </div>
+
+                        <div class="timeline-item reveal-fade">
+                            <div class="timeline-dot"></div>
+                            <span class="timeline-date">2019 - 2021</span>
+                            <h3 class="timeline-title">Technical High School (Informatics)</h3>
+                            <p class="timeline-subtitle">CEMEP</p>
+                            <p class="timeline-desc">Foundational programming, logic, and systems integration courses.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="resume-col">
+                    <h2 class="section-title reveal-text">Technical <br /> <span class="accent">Arsenal</span></h2>
+
+                    <div class="skills-block reveal-fade">
+                        <div class="skills-category">
+                            <h4>Core Engineering</h4>
+                            <div class="skills-list">
+                                <span class="skill-tag">Python</span>
+                                <span class="skill-tag">Java</span>
+                                <span class="skill-tag">Kotlin</span>
+                                <span class="skill-tag">C</span>
+                                <span class="skill-tag">Object-Oriented Programming</span>
+                                <span class="skill-tag">Data Structures</span>
+                            </div>
+                        </div>
+
+                        <div class="skills-category">
+                            <h4>Data & Machine Learning</h4>
+                            <div class="skills-list">
+                                <span class="skill-tag">Scikit-learn</span>
+                                <span class="skill-tag">Pandas</span>
+                                <span class="skill-tag">NumPy</span>
+                                <span class="skill-tag">Jupyter</span>
+                                <span class="skill-tag">Data Analysis</span>
+                            </div>
+                        </div>
+
+                        <div class="skills-category">
+                            <h4>Tools & Platforms</h4>
+                            <div class="skills-list">
+                                <span class="skill-tag">Android Studio</span>
+                                <span class="skill-tag">Git / GitHub</span>
+                                <span class="skill-tag">Firebase</span>
+                                <span class="skill-tag">Figma</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer id="contact" class="footer">
+        <div class="container footer__container">
+            <div class="footer__top">
+                <h2 class="footer__title reveal-text">Let's build <br /> something <span class="accent">great.</span>
+                </h2>
+                <div class="footer__contact-info reveal-fade">
+                    <p class="footer__subtitle">Currently open for internships and junior software engineering roles.
+                    </p>
+                    <a href="mailto:fyabiko@gmail.com" class="mega-link magnetic">fyabiko@gmail.com</a>
+                </div>
+            </div>
+
+            <div class="footer__bottom reveal-fade">
+                <div class="footer__socials">
+                    <a href="https://github.com/FelipeYabiko" target="_blank" class="social-link magnetic">GitHub</a>
+                    <a href="https://www.linkedin.com/in/felipe-yabiko-b57574379/" target="_blank"
+                        class="social-link magnetic">LinkedIn</a>
+                </div>
+                <div class="footer__credits">
+                    <p>&copy; 2026 Felipe Yabiko Nogueira.</p>
+                    <p class="time">Campinas, SP, Brazil</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- GSAP & Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="app.js"></script>
+</body>
+
+</html>
