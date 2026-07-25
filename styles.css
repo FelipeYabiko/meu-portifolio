@@ -794,3 +794,367 @@ h6 {
 }
 .lang-toggle { font-family: var(--font-heading); font-weight: 500; font-size: 0.875rem; color: var(--text-primary); border: 1px solid var(--border-color); border-radius: var(--radius-pill); padding: 6px 14px; background: rgba(255, 255, 255, 0.05); transition: all 0.3s ease; }
 .lang-toggle:hover { background: rgba(255, 255, 255, 0.1); border-color: var(--text-primary); }
+
+/* ==========================================================================
+   ADIÇÕES — responsividade, serviços, contato
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Header: fundo ao rolar (o mix-blend-mode sozinho some em fundo claro)
+   -------------------------------------------------------------------------- */
+.header.is-scrolled {
+    mix-blend-mode: normal;
+    background: rgba(12, 12, 12, 0.82);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border-color);
+}
+
+/* --------------------------------------------------------------------------
+   Botão fantasma (CTA secundário do hero)
+   -------------------------------------------------------------------------- */
+.btn.--ghost {
+    background: transparent;
+    color: var(--text-primary);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+.btn.--ghost:hover {
+    border-color: var(--text-primary);
+    background: rgba(255, 255, 255, 0.06);
+}
+
+.hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+}
+
+/* --------------------------------------------------------------------------
+   Menu mobile
+   -------------------------------------------------------------------------- */
+.menu-toggle {
+    display: none;
+    width: 44px;
+    height: 44px;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    position: relative;
+    z-index: 120;
+}
+
+.hamburger,
+.hamburger::before,
+.hamburger::after {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background-color: var(--text-primary);
+    transition: transform 0.35s ease, opacity 0.2s ease;
+}
+
+.hamburger::before,
+.hamburger::after {
+    content: '';
+    position: absolute;
+}
+
+.hamburger::before {
+    transform: translateY(-7px);
+}
+
+.hamburger::after {
+    transform: translateY(7px);
+}
+
+body.nav-open .hamburger {
+    background-color: transparent;
+}
+
+body.nav-open .hamburger::before {
+    transform: rotate(45deg);
+}
+
+body.nav-open .hamburger::after {
+    transform: rotate(-45deg);
+}
+
+@media (max-width: 900px) {
+    .menu-toggle {
+        display: flex;
+    }
+
+    .header {
+        mix-blend-mode: normal;
+    }
+
+    .nav {
+        position: fixed;
+        inset: 0;
+        background: var(--bg-color);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s ease, visibility 0.3s ease;
+        z-index: 110;
+    }
+
+    .nav.is-open {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .nav__list {
+        flex-direction: column;
+        gap: var(--space-md);
+        text-align: center;
+    }
+
+    .nav__list a {
+        font-size: 1.5rem;
+        font-family: var(--font-heading);
+    }
+
+    body.nav-open {
+        overflow: hidden;
+    }
+}
+
+/* --------------------------------------------------------------------------
+   Serviços
+   -------------------------------------------------------------------------- */
+.services-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-md);
+}
+
+@media (min-width: 768px) {
+    .services-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.service-card {
+    background: var(--surface-color);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    padding: var(--space-md);
+    display: flex;
+    flex-direction: column;
+    transition: border-color 0.3s ease, transform 0.3s ease;
+}
+
+.service-card:hover {
+    border-color: rgba(255, 85, 32, 0.4);
+    transform: translateY(-4px);
+}
+
+.service-card__label {
+    font-family: var(--font-heading);
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent-color);
+    margin-bottom: var(--space-sm);
+}
+
+.service-card__title {
+    font-family: var(--font-heading);
+    font-size: 1.375rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    margin-bottom: var(--space-xs);
+}
+
+.service-card__desc {
+    color: var(--text-secondary);
+    font-size: 0.9375rem;
+    line-height: 1.6;
+    margin-bottom: var(--space-sm);
+}
+
+.service-card__list {
+    list-style: none;
+    margin-top: auto;
+    padding-top: var(--space-sm);
+    border-top: 1px solid var(--border-color);
+}
+
+.service-card__list li {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    padding: 6px 0 6px 18px;
+    position: relative;
+}
+
+.service-card__list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 14px;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent-color);
+}
+
+/* --------------------------------------------------------------------------
+   Imagem real dentro do card de projeto (quando existir o print)
+   -------------------------------------------------------------------------- */
+.project-row__image {
+    position: relative;
+    overflow: hidden;
+}
+
+.project-row__image img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 2;
+}
+
+/* --------------------------------------------------------------------------
+   Projetos secundários
+   -------------------------------------------------------------------------- */
+.mini-projects {
+    margin-top: var(--space-xl);
+    padding-top: var(--space-lg);
+    border-top: 1px solid var(--border-color);
+}
+
+.mini-projects__title {
+    font-family: var(--font-heading);
+    font-size: 0.875rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    margin-bottom: var(--space-md);
+}
+
+.mini-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-sm);
+}
+
+@media (min-width: 768px) {
+    .mini-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.mini-card {
+    display: block;
+    padding: var(--space-sm);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+.mini-card:hover {
+    border-color: rgba(255, 255, 255, 0.25);
+    background: var(--surface-color);
+}
+
+.mini-card h4 {
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: var(--space-xs);
+}
+
+.mini-card p {
+    font-size: 0.8125rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: var(--space-sm);
+}
+
+/* --------------------------------------------------------------------------
+   Contato
+   -------------------------------------------------------------------------- */
+.footer__actions {
+    margin-top: var(--space-md);
+}
+
+/* --------------------------------------------------------------------------
+   Espaçamento e tipografia no mobile
+   -------------------------------------------------------------------------- */
+@media (max-width: 767px) {
+    :root {
+        --space-xl: 72px;
+        --space-xxl: 96px;
+        --container-px: 24px;
+        --header-height: 72px;
+    }
+
+    .project-showcase {
+        gap: var(--space-xl);
+    }
+
+    .btn.--large {
+        height: 58px;
+        padding: 0 28px;
+        font-size: 1rem;
+    }
+
+    .hero__actions .btn {
+        flex: 1 1 100%;
+    }
+}
+
+/* --------------------------------------------------------------------------
+   Acessibilidade
+   -------------------------------------------------------------------------- */
+a:focus-visible,
+button:focus-visible {
+    outline: 2px solid var(--accent-color);
+    outline-offset: 3px;
+    border-radius: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+
+    .cursor-dot,
+    .cursor-follower {
+        display: none;
+    }
+}
+
+/* --------------------------------------------------------------------------
+   Linha de contexto do projeto (substitui o link quando o repo é privado)
+   -------------------------------------------------------------------------- */
+.project-row__meta {
+    font-family: var(--font-heading);
+    font-size: 0.8125rem;
+    letter-spacing: 0.06em;
+    color: var(--text-muted);
+    margin-top: var(--space-sm);
+}
+
+.view-project-link + .project-row__meta {
+    margin-top: var(--space-xs);
+}
+
+/* Card secundário sem link: mantém o visual, sem afordância de clique */
+.mini-card:not(.is-link):hover {
+    border-color: var(--border-color);
+    background: transparent;
+}

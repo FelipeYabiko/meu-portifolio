@@ -1,342 +1,377 @@
-document.addEventListener('DOMContentLoaded', () => {
+/* ==========================================================================
+   Felipe Yabiko Nogueira — portfólio
+   ========================================================================== */
 
-    // 1. Initialize GSAP & ScrollTrigger
-    gsap.registerPlugin(ScrollTrigger);
+(function () {
+    'use strict';
 
-    initCursor();
-    initMagneticButtons();
-    initSmoothScroll();
-    initScrollAnimations();
+    var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var hasFinePointer = window.matchMedia('(pointer: fine)').matches;
+    var hasGSAP = typeof window.gsap !== 'undefined';
 
-    // Remove loading class
-    document.body.classList.remove('loading');
+    /* ======================================================================
+       Dicionário de tradução
+       Chave = valor do atributo data-i18n no HTML.
+       Para adicionar texto traduzível: coloque data-i18n="minhaChave" no
+       elemento e adicione a chave nos dois dicionários abaixo.
+       ====================================================================== */
+    var i18n = {
+        pt: {
+            navServices: 'Serviços',
+            navProjects: 'Projetos',
+            navExperience: 'Experiência',
+            navContact: 'Contato',
 
-    // ==========================================
-    // Custom Cursor Logic
-    // ==========================================
+            heroEyebrow: 'ENGENHARIA DE SOFTWARE <span class="accent">·</span> DADOS <span class="accent">·</span> AUTOMAÇÃO',
+            heroDesc: 'Transformo planilha e processo manual em sistema que roda sozinho. <span class="accent">Dashboards</span>, <span class="accent">automações</span> e aplicações web — do ETL em Python à interface em Next.js.',
+            heroBtnPrimary: 'Ver projetos <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>',
+            heroBtnSecondary: 'Falar comigo',
+
+            servicesTitle: 'O que eu <br /> <span class="accent">construo</span>',
+            servicesSub: 'Três frentes que resolvem o mesmo problema: informação espalhada e trabalho repetitivo que consome o tempo de quem deveria estar vendendo.',
+            s1Label: 'Dados',
+            s1Title: 'Dashboards e indicadores',
+            s1Desc: 'Seus dados estão em cinco planilhas e três sistemas que não conversam. Eu junto tudo num pipeline de ETL e entrego um painel que o time abre todo dia — não um relatório que ninguém lê.',
+            s1i1: 'Integração de múltiplas fontes',
+            s1i2: 'Atualização automática',
+            s1i3: 'Exportação para Excel',
+            s2Label: 'Automação',
+            s2Title: 'Automação de processos',
+            s2Desc: 'Aquela rotina de copiar dado de PDF, baixar relatório do portal e colar na planilha. Eu escrevo o robô que faz isso sozinho e devolvo as horas para o time.',
+            s2i1: 'Extração de PDF e nota fiscal',
+            s2i2: 'Navegação automatizada em portais',
+            s2i3: 'Leitura de documento com IA',
+            s3Label: 'Produto',
+            s3Title: 'Aplicações web sob medida',
+            s3Desc: 'Sistema de agendamento, catálogo, área do cliente, painel interno. Feito do zero para o seu processo, não um template genérico adaptado na marra.',
+            s3i1: 'Next.js e TypeScript',
+            s3i2: 'Login e multi-usuário',
+            s3i3: 'Deploy e manutenção',
+
+            projectsTitle: 'Projetos <br /> <span class="accent">selecionados</span>',
+            projectsSub: 'Uma seleção do que construí — do levantamento de requisitos ao deploy.',
+            p1Desc: 'Plataforma que conecta óticas a clínicas oftalmológicas parceiras. A ótica cadastra o paciente que chegou sem receita, agenda com a clínica, recebe a receita digital e registra a venda do óculos — com isolamento total de dados entre as duas organizações. Tech lead de um time de 6 pessoas.',
+            p1Meta: 'TCC · Tech lead · Time de 6 pessoas · No ar',
+            p2Desc: 'Vitrine digital do comércio de bairro. Mercadinho, padaria, açougue e barbearia publicam produto com foto e preço, imprimem o QR Code e colam na porta — quem passa na rua já vê o catálogo no celular e chama no WhatsApp. Sem app para instalar e sem intermediário na conversa.',
+            p2Meta: 'Produto próprio · Em desenvolvimento',
+            p3Desc: 'Ferramenta de votação e ranking de vídeos com geração automática do vídeo final. O pipeline roda em GitHub Actions, baixa e processa cada clipe e monta a compilação do resultado sem intervenção manual.',
+            p3Meta: 'Projeto pessoal · No ar',
+            viewRepo: 'Ver repositório <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>',
+            viewLive: 'Ver ao vivo <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>',
+            miniTitle: 'Outros projetos',
+            m1Desc: 'Classificação de sobrevivência de pacientes com dados clínicos. PCA para redução de dimensionalidade e GridSearchCV sobre KNN e MLP.',
+            m2Desc: 'Sistema de acesso a armários com autenticação NFC via pulseira inteligente, com app de gestão.',
+            m3Desc: 'App Android que agrega notícias econômicas e usa a API do Gemini para gerar resumos em tempo real.',
+
+            expTitle: 'Experiência <br /> <span class="accent">e formação</span>',
+            exp1Date: 'Mar 2026 — Atual',
+            exp1Title: 'Estagiário de Engenharia de Software',
+            exp1Desc: 'Desenvolvimento de pipelines de ETL em Python e painéis de indicadores para a área comercial. Automação de rotinas de coleta de dados com Playwright e pandas.',
+            edu1Title: 'Bacharelado em Engenharia de Software',
+            edu1Desc: 'Formação com projetos integradores semestrais em desenvolvimento full-stack, machine learning e arquitetura de software.',
+            edu2Title: 'Técnico em Informática',
+            edu2Desc: 'Fundamentos de programação, lógica e integração de sistemas.',
+            certDate: 'Certificação',
+            certTitle: 'Inglês — Nível B2',
+
+            stackTitle: 'Stack <br /> <span class="accent">técnica</span>',
+            k1Title: 'Front-end',
+            k2Title: 'Back-end e dados',
+            k3Title: 'IA aplicada',
+            k4Title: 'Automação e infra',
+
+            footTitle: 'Vamos construir <br /> algo <span class="accent">que funciona.</span>',
+            footSub: 'Aberto a projetos freelance e a oportunidades em engenharia de software. Respondo em até um dia útil.',
+            ctaMail: 'Me mandar um e-mail'
+        },
+
+        en: {
+            navServices: 'Services',
+            navProjects: 'Projects',
+            navExperience: 'Experience',
+            navContact: 'Contact',
+
+            heroEyebrow: 'SOFTWARE ENGINEERING <span class="accent">·</span> DATA <span class="accent">·</span> AUTOMATION',
+            heroDesc: 'I turn spreadsheets and manual processes into systems that run on their own. <span class="accent">Dashboards</span>, <span class="accent">automation</span> and web apps — from the Python ETL to the Next.js interface.',
+            heroBtnPrimary: 'View projects <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>',
+            heroBtnSecondary: 'Get in touch',
+
+            servicesTitle: 'What I <br /> <span class="accent">build</span>',
+            servicesSub: 'Three areas solving the same problem: scattered information and repetitive work eating the time of people who should be selling.',
+            s1Label: 'Data',
+            s1Title: 'Dashboards and reporting',
+            s1Desc: 'Your data lives in five spreadsheets and three systems that never talk to each other. I pull it together in an ETL pipeline and ship a dashboard the team actually opens every day.',
+            s1i1: 'Multi-source integration',
+            s1i2: 'Automated refresh',
+            s1i3: 'Excel export',
+            s2Label: 'Automation',
+            s2Title: 'Process automation',
+            s2Desc: 'That routine of copying data out of a PDF, downloading a report from a portal and pasting it into a spreadsheet. I write the bot that does it, and give those hours back to the team.',
+            s2i1: 'PDF and invoice extraction',
+            s2i2: 'Automated portal navigation',
+            s2i3: 'AI-powered document reading',
+            s3Label: 'Product',
+            s3Title: 'Custom web applications',
+            s3Desc: 'Scheduling systems, catalogues, customer portals, internal dashboards. Built from scratch around your process, not a generic template forced to fit.',
+            s3i1: 'Next.js and TypeScript',
+            s3i2: 'Auth and multi-user',
+            s3i3: 'Deployment and maintenance',
+
+            projectsTitle: 'Selected <br /> <span class="accent">projects</span>',
+            projectsSub: 'A selection of what I have built — from requirements gathering to deployment.',
+            p1Desc: 'Platform connecting optical stores to partner ophthalmology clinics. The store registers a customer who arrived without a prescription, books the appointment, receives the digital prescription and records the eyewear sale — with full data isolation between the two organisations. Tech lead of a 6-person team.',
+            p1Meta: 'Capstone project · Tech lead · Team of 6 · Live',
+            p2Desc: 'Digital storefront for neighbourhood businesses. Grocers, bakeries, butchers and barbers publish products with photo and price, print a QR code and stick it on the door — passers-by see the catalogue on their phone and message on WhatsApp. No app to install, no middleman in the conversation.',
+            p2Meta: 'Own product · In development',
+            p3Desc: 'Video voting and ranking tool with automatic generation of the final video. The pipeline runs on GitHub Actions, downloads and processes each clip, and assembles the result compilation with no manual work.',
+            p3Meta: 'Personal project · Live',
+            viewRepo: 'View repository <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>',
+            viewLive: 'View live <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>',
+            miniTitle: 'Other projects',
+            m1Desc: 'Patient survival classification from clinical data. PCA for dimensionality reduction and GridSearchCV over KNN and MLP architectures.',
+            m2Desc: 'Locker access system using NFC authentication via smart wristbands, with a management app.',
+            m3Desc: 'Android app that aggregates economic news and uses the Gemini API to generate real-time summaries.',
+
+            expTitle: 'Experience <br /> <span class="accent">and education</span>',
+            exp1Date: 'Mar 2026 — Present',
+            exp1Title: 'Software Engineering Intern',
+            exp1Desc: 'Building Python ETL pipelines and KPI dashboards for the commercial division. Automation of data collection routines with Playwright and pandas.',
+            edu1Title: 'B.S. Software Engineering',
+            edu1Desc: 'Semester-long integrated projects covering full-stack development, machine learning and software architecture.',
+            edu2Title: 'Technical High School (Informatics)',
+            edu2Desc: 'Foundations of programming, logic and systems integration.',
+            certDate: 'Certification',
+            certTitle: 'English — B2 level',
+
+            stackTitle: 'Technical <br /> <span class="accent">stack</span>',
+            k1Title: 'Front-end',
+            k2Title: 'Back-end and data',
+            k3Title: 'Applied AI',
+            k4Title: 'Automation and infra',
+
+            footTitle: "Let's build <br /> something <span class=\"accent\">that works.</span>",
+            footSub: 'Open to freelance projects and software engineering roles. I reply within one business day.',
+            ctaMail: 'Send me an email'
+        }
+    };
+
+    var currentLang = 'pt';
+
+    function applyLanguage(lang) {
+        var dict = i18n[lang];
+        if (!dict) return;
+
+        currentLang = lang;
+
+        // Cada elemento busca a própria chave — reordenar ou adicionar
+        // seções não quebra mais nada.
+        var nodes = document.querySelectorAll('[data-i18n]');
+        for (var i = 0; i < nodes.length; i++) {
+            var key = nodes[i].getAttribute('data-i18n');
+            if (dict[key]) nodes[i].innerHTML = dict[key];
+        }
+
+        document.documentElement.lang = lang === 'pt' ? 'pt-BR' : 'en';
+
+        var btn = document.getElementById('lang-toggle');
+        if (btn) btn.textContent = lang === 'pt' ? 'EN' : 'PT';
+
+        try { localStorage.setItem('lang', lang); } catch (e) { /* modo privado */ }
+    }
+
+    function initLanguage() {
+        var saved = null;
+        try { saved = localStorage.getItem('lang'); } catch (e) { }
+
+        // Sem preferência salva: se o navegador não for português, abre em inglês.
+        if (!saved) {
+            var nav = (navigator.language || 'pt').toLowerCase();
+            saved = nav.indexOf('pt') === 0 ? 'pt' : 'en';
+        }
+
+        applyLanguage(saved);
+
+        var btn = document.getElementById('lang-toggle');
+        if (btn) {
+            btn.addEventListener('click', function () {
+                applyLanguage(currentLang === 'pt' ? 'en' : 'pt');
+            });
+        }
+    }
+
+    /* ======================================================================
+       Menu mobile
+       ====================================================================== */
+    function initMobileMenu() {
+        var toggle = document.getElementById('menu-toggle');
+        var nav = document.getElementById('nav');
+        if (!toggle || !nav) return;
+
+        function close() {
+            nav.classList.remove('is-open');
+            document.body.classList.remove('nav-open');
+            toggle.setAttribute('aria-expanded', 'false');
+        }
+
+        toggle.addEventListener('click', function () {
+            var open = nav.classList.toggle('is-open');
+            document.body.classList.toggle('nav-open', open);
+            toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+        });
+
+        // Fecha ao clicar num link
+        nav.addEventListener('click', function (e) {
+            if (e.target.closest('a')) close();
+        });
+
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape') close();
+        });
+    }
+
+    /* ======================================================================
+       Cursor customizado — só em dispositivos com mouse
+       ====================================================================== */
     function initCursor() {
-        const cursorDot = document.querySelector('.cursor-dot');
-        const cursorFollower = document.querySelector('.cursor-follower');
+        if (!hasFinePointer || !hasGSAP) return;
 
-        // Check if cursor elements exist
+        var cursorDot = document.querySelector('.cursor-dot');
+        var cursorFollower = document.querySelector('.cursor-follower');
         if (!cursorDot || !cursorFollower) return;
 
-        let mouseX = 0, mouseY = 0;
-        let dotX = 0, dotY = 0;
-        let followerX = 0, followerY = 0;
+        var mouseX = 0, mouseY = 0, dotX = 0, dotY = 0, followerX = 0, followerY = 0;
 
-        // Follow mouse
-        window.addEventListener('mousemove', (e) => {
+        window.addEventListener('mousemove', function (e) {
             mouseX = e.clientX;
             mouseY = e.clientY;
         });
 
-        // Easing interpolation for smooth following
-        gsap.ticker.add(() => {
+        gsap.ticker.add(function () {
             dotX += (mouseX - dotX) * 0.5;
             dotY += (mouseY - dotY) * 0.5;
-
             followerX += (mouseX - followerX) * 0.15;
             followerY += (mouseY - followerY) * 0.15;
-
             gsap.set(cursorDot, { x: dotX, y: dotY });
             gsap.set(cursorFollower, { x: followerX, y: followerY });
         });
 
-        // Hover states on interactive elements
-        const interactives = document.querySelectorAll('a, button, .magnetic');
-        interactives.forEach(el => {
-            el.addEventListener('mouseenter', () => {
-                document.body.classList.add('hovering');
-            });
-            el.addEventListener('mouseleave', () => {
-                document.body.classList.remove('hovering');
-            });
+        var interactives = document.querySelectorAll('a, button, .magnetic');
+        interactives.forEach(function (el) {
+            el.addEventListener('mouseenter', function () { document.body.classList.add('hovering'); });
+            el.addEventListener('mouseleave', function () { document.body.classList.remove('hovering'); });
         });
     }
 
-    // ==========================================
-    // Magnetic Button Effect
-    // ==========================================
+    /* ======================================================================
+       Botões magnéticos
+       ====================================================================== */
     function initMagneticButtons() {
-        const magnets = document.querySelectorAll('.magnetic');
+        if (!hasFinePointer || !hasGSAP || prefersReducedMotion) return;
 
-        magnets.forEach(magnet => {
-            magnet.addEventListener('mousemove', (e) => {
-                const rect = magnet.getBoundingClientRect();
-                const strength = magnet.getAttribute('data-strength') || 20;
-
-                // Calculate mouse position relative to center of element (-1 to 1)
-                const x = ((e.clientX - rect.left) / rect.width - 0.5) * 2;
-                const y = ((e.clientY - rect.top) / rect.height - 0.5) * 2;
-
-                gsap.to(magnet, {
-                    x: x * strength,
-                    y: y * strength,
-                    duration: 0.5,
-                    ease: "power2.out"
-                });
+        document.querySelectorAll('.magnetic').forEach(function (magnet) {
+            magnet.addEventListener('mousemove', function (e) {
+                var rect = magnet.getBoundingClientRect();
+                var strength = magnet.getAttribute('data-strength') || 20;
+                var x = ((e.clientX - rect.left) / rect.width - 0.5) * 2;
+                var y = ((e.clientY - rect.top) / rect.height - 0.5) * 2;
+                gsap.to(magnet, { x: x * strength, y: y * strength, duration: 0.5, ease: 'power2.out' });
             });
 
-            magnet.addEventListener('mouseleave', () => {
-                gsap.to(magnet, {
-                    x: 0,
-                    y: 0,
-                    duration: 0.7,
-                    ease: "elastic.out(1, 0.3)"
-                });
+            magnet.addEventListener('mouseleave', function () {
+                gsap.to(magnet, { x: 0, y: 0, duration: 0.7, ease: 'elastic.out(1, 0.3)' });
             });
         });
     }
 
-    // ==========================================
-    // Smooth Scrolling for Navigation
-    // ==========================================
+    /* ======================================================================
+       Scroll suave
+       ====================================================================== */
     function initSmoothScroll() {
-        const navLinks = document.querySelectorAll('.nav__link, .btn.--cta');
-
-        navLinks.forEach(link => {
+        document.querySelectorAll('a[href^="#"]').forEach(function (link) {
             link.addEventListener('click', function (e) {
-                const targetId = this.getAttribute('href');
+                var targetId = this.getAttribute('href');
+                if (!targetId || targetId.length < 2) return;
 
-                // Only act on anchor links pointing to sections on this page
-                if (targetId && targetId.startsWith('#') && targetId.length > 1) {
-                    e.preventDefault();
-                    const targetElement = document.querySelector(targetId);
+                var target = document.querySelector(targetId);
+                if (!target) return;
 
-                    if (targetElement) {
-                        // Use native smooth scrolling or fallback to GSAP if ScrollToPlugin is added
-                        // We use native here for simplicity as it pairs well with our CSS
-                        const headerOffset = 100; // Matches var(--header-height)
-                        const elementPosition = targetElement.getBoundingClientRect().top;
-                        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                e.preventDefault();
+                var headerOffset = 100;
+                var offsetPosition = target.getBoundingClientRect().top + window.pageYOffset - headerOffset;
 
-                        window.scrollTo({
-                            top: offsetPosition,
-                            behavior: "smooth"
-                        });
-                    }
-                }
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: prefersReducedMotion ? 'auto' : 'smooth'
+                });
             });
         });
     }
 
-    // ==========================================
-    // Parallax and Reveal Animations (GSAP)
-    // ==========================================
+    /* ======================================================================
+       Animações de scroll
+       ====================================================================== */
     function initScrollAnimations() {
-        const customEase = "power3.out";
+        if (!hasGSAP || prefersReducedMotion) return;
+        if (typeof ScrollTrigger !== 'undefined') gsap.registerPlugin(ScrollTrigger);
 
-        // Hero Sequence (Masked revealing text)
-        const heroTl = gsap.timeline({ delay: 0.2 });
+        var ease = 'power3.out';
 
-        heroTl.from(".hero__subtitle", {
-            y: 40,
-            opacity: 0,
-            duration: 1,
-            ease: customEase
-        })
-            .from(".hero__title-line", {
-                yPercent: 120, // animates up from below the mask
-                duration: 1.2,
-                stagger: 0.15,
-                ease: "power4.out"
-            }, "-=0.6")
-            .from(".hero__description", {
-                y: 40,
-                opacity: 0,
-                duration: 1,
-                ease: customEase
-            }, "-=0.8")
-            .from(".hero__actions", {
-                y: 20,
-                opacity: 0,
-                duration: 1,
-                ease: customEase
-            }, "-=0.8");
+        gsap.timeline({ delay: 0.2 })
+            .from('.hero__subtitle', { y: 40, opacity: 0, duration: 1, ease: ease })
+            .from('.hero__title-line', { yPercent: 120, duration: 1.2, stagger: 0.15, ease: 'power4.out' }, '-=0.6')
+            .from('.hero__description', { y: 40, opacity: 0, duration: 1, ease: ease }, '-=0.8')
+            .from('.hero__actions', { y: 20, opacity: 0, duration: 1, ease: ease }, '-=0.8');
 
-        // Section Titles Mask Reveal
-        gsap.utils.toArray('.section-title.reveal-text').forEach(title => {
+        gsap.utils.toArray('.section-title.reveal-text').forEach(function (title) {
             gsap.from(title, {
-                scrollTrigger: {
-                    trigger: title,
-                    start: "top 85%",
-                },
-                y: 50,
-                opacity: 0,
-                duration: 1.2,
-                ease: customEase
+                scrollTrigger: { trigger: title, start: 'top 85%' },
+                y: 50, opacity: 0, duration: 1.2, ease: ease
             });
         });
 
-        // Generic Fades
-        gsap.utils.toArray('.reveal-fade').forEach(elem => {
+        gsap.utils.toArray('.reveal-fade').forEach(function (elem) {
             gsap.from(elem, {
-                scrollTrigger: {
-                    trigger: elem,
-                    start: "top 85%",
-                },
-                y: 30,
-                opacity: 0,
-                duration: 1,
-                ease: customEase
+                scrollTrigger: { trigger: elem, start: 'top 85%' },
+                y: 30, opacity: 0, duration: 1, ease: ease
             });
         });
 
-        // Project Rows Scroll Reveal
-        gsap.utils.toArray('.project-row').forEach(row => {
-            const info = row.querySelector('.project-row__info');
-            const img = row.querySelector('.project-row__image-wrap');
-
+        gsap.utils.toArray('.project-row').forEach(function (row) {
+            var img = row.querySelector('.project-row__image-wrap');
+            if (!img) return;
             gsap.from(img, {
-                scrollTrigger: {
-                    trigger: row,
-                    start: "top 80%",
-                },
-                y: 60,
-                opacity: 0,
-                duration: 1.2,
-                ease: customEase
-            });
-
-            gsap.from(info, {
-                scrollTrigger: {
-                    trigger: row,
-                    start: "top 75%",
-                },
-                y: 40,
-                opacity: 0,
-                duration: 1,
-                delay: 0.2,
-                ease: customEase
-            });
-        });
-
-        // Image Parallax Effect
-        gsap.utils.toArray('.project-row__image').forEach(img => {
-            gsap.to(img, {
-                yPercent: 20,
-                ease: "none",
-                scrollTrigger: {
-                    trigger: img.parentElement,
-                    start: "top bottom",
-                    end: "bottom top",
-                    scrub: true
-                }
+                scrollTrigger: { trigger: row, start: 'top 80%' },
+                y: 60, opacity: 0, duration: 1.2, ease: ease
             });
         });
     }
-});
 
-// ==========================================
-// Internationalization (i18n)
-// ==========================================
-const i18n = {
-    en: {
-        navAbout: 'About',
-        navProj: 'Projects',
-        navExp: 'Experience',
-        navConn: 'Connect',
-        heroSub: 'SOFTWARE ENGINEER <span class="accent">&amp;</span> DATA ENTHUSIAST',
-        heroDesc: 'Applying logic and mathematics to solve complex real-world problems. Specializing in <span class="accent">Machine Learning</span>, <span class="accent">Android Architectures</span>, and Embedded Systems.',
-        heroBtn: 'Explore Work <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>',
-        projTitle: 'Selected <br /> <span class="accent">Projects</span>',
-        projSub: 'A curated selection of academic and personal technical projects tackling predictive models, embedded system control, and AI integration.',
-        p1Desc: 'An integrated locker access system using NFC authentication via smart wristbands. Built an intuitive mobile application for secure management.',
-        viewRepo1: 'View Repository <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>',
-        p2Desc: 'ML classification models predicting patient survival based on clinical data. Utilized PCA dimensionality reduction and hyperparameter tuning (GridSearchCV) on KNN and MLP architectures.',
-        viewRepo2: 'View Repository <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>',
-        p3Desc: 'An Android application that aggregates economic news and utilizes the Gemini LLM API to generate automatic, real-time summaries and insights for users.',
-        viewRepo3: 'View Repository <svg width="14" height="14" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><line x1=\"5\" y1=\"12\" x2=\"19\" y2=\"12\"></line><polyline points=\"12 5 19 12 12 19\"></polyline></svg>',
-        eduTitle: 'Academic <br /> <span class=\"accent\">Background</span>',
-        edu1Desc: 'Extensive academic training through practical, semester-long integrated projects focusing on full-stack development, ML, and software architecture.',
-        edu2Title: 'Technical High School (Informatics)',
-        edu2Desc: 'Foundational programming, logic, and systems integration courses.',
-        skillTitle: 'Technical <br /> <span class=\"accent\">Arsenal</span>',
-        s1Title: 'Core Engineering',
-        s2Title: 'Data & Machine Learning',
-        s3Title: 'Tools & Platforms',
-        footTitle: "Let's build<br /> something <span class=\"accent\">great.</span>",
-        footSub: 'Currently open for internships and junior software engineering roles.'
-    },
-    pt: {
-        navAbout: 'Sobre',
-        navProj: 'Projetos',
-        navExp: 'Experiência',
-        navConn: 'Conectar',
-        heroSub: 'ENGENHEIRO DE SOFTWARE <span class=\"accent\">&amp;</span> ENTUSIASTA DE DADOS',
-        heroDesc: 'Aplicando lógica e matemática para resolver problemas complexos do mundo real. Especializando-se em <span class=\"accent\">Machine Learning</span>, <span class=\"accent\">Arquiteturas Android</span> e Sistemas Embarcados.',
-        heroBtn: 'Projetos <svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><line x1=\"5\" y1=\"12\" x2=\"19\" y2=\"12\"></line><polyline points=\"12 5 19 12 12 19\"></polyline></svg>',
-        projTitle: 'Projetos <br /> <span class=\"accent\">Selecionados</span>',
-        projSub: 'Uma seleção de projetos técnicos focados em inteligência artificial, controle de hardware e aplicativos mobile.',
-        p1Desc: 'Um sistema integrado de acesso a armários usando autenticação NFC via pulseiras inteligentes. Construída uma aplicação móvel intuitiva para gestão.',
-        viewRepo1: 'Ver Repositório <svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><line x1=\"5\" y1=\"12\" x2=\"19\" y2=\"12\"></line><polyline points=\"12 5 19 12 12 19\"></polyline></svg>',
-        p2Desc: 'Modelos de classificação predizendo a sobrevivência de pacientes com dados clínicos. Uso de PCA e GridSearchCV em arquiteturas KNN e MLP.',
-        viewRepo2: 'Ver Repositório <svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><line x1=\"5\" y1=\"12\" x2=\"19\" y2=\"12\"></line><polyline points=\"12 5 19 12 12 19\"></polyline></svg>',
-        p3Desc: 'Um aplicativo Android que agrega notícias econômicas e utiliza a API LLM do Gemini para gerar resumos em tempo real.',
-        viewRepo3: 'Ver Repositório <svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><line x1=\"5\" y1=\"12\" x2=\"19\" y2=\"12\"></line><polyline points=\"12 5 19 12 12 19\"></polyline></svg>',
-        eduTitle: 'Formação <br /> <span class=\"accent\">Acadêmica</span>',
-        edu1Desc: 'Treinamento prático em desenvolvimento full-stack, ML e arquitetura de software.',
-        edu2Title: 'Ensino Médio Técnico (Informática)',
-        edu2Desc: 'Fundamentos de programação, lógica de sistemas e montagem.',
-        skillTitle: 'Arsenal <br /> <span class=\"accent\">Técnico</span>',
-        s1Title: 'Engenharia de Software',
-        s2Title: 'Dados & Machine Learning',
-        s3Title: 'Ferramentas & Plataformas',
-        footTitle: 'Vamos construir <br /> algo <span class=\"accent\">incrível.</span>',
-        footSub: 'Buscando oportunidades em engenharia de software e ciência de dados.'
-    }
-};
+    /* ======================================================================
+       Header com fundo ao rolar
+       ====================================================================== */
+    function initHeaderScroll() {
+        var header = document.querySelector('.header');
+        if (!header) return;
 
-let currentLang = 'en';
-
-function toggleLanguage() {
-    currentLang = currentLang === 'en' ? 'pt' : 'en';
-    const langBtn = document.getElementById('lang-toggle');
-    if (langBtn) {
-        langBtn.textContent = currentLang === 'en' ? 'PT' : 'EN';
-    }
-
-    const map = {
-        navAbout: document.querySelector('a[href="#about"]'),
-        navProj: document.querySelector('a[href="#projects"]'),
-        navExp: document.querySelector('a[href="#experience"]'),
-        navConn: document.querySelector('.btn.\\-\\-cta .btn-text'),
-        heroSub: document.querySelector('.hero__subtitle'),
-        heroDesc: document.querySelector('.hero__description'),
-        heroBtn: document.querySelector('.hero__actions .btn-text'),
-        projTitle: document.querySelectorAll('.section-title.reveal-text')[0],
-        projSub: document.querySelector('.section-subtitle'),
-        p1Desc: document.querySelectorAll('.project-row__desc')[0],
-        viewRepo1: document.querySelectorAll('.view-project-link')[0],
-        p2Desc: document.querySelectorAll('.project-row__desc')[1],
-        viewRepo2: document.querySelectorAll('.view-project-link')[1],
-        p3Desc: document.querySelectorAll('.project-row__desc')[2],
-        viewRepo3: document.querySelectorAll('.view-project-link')[2],
-        eduTitle: document.querySelectorAll('.resume-col .section-title')[0],
-        skillTitle: document.querySelectorAll('.resume-col .section-title')[1],
-        edu1Desc: document.querySelectorAll('.timeline-desc')[0],
-        edu2Title: document.querySelectorAll('.timeline-title')[1],
-        edu2Desc: document.querySelectorAll('.timeline-desc')[1],
-        s1Title: document.querySelectorAll('.skills-category h4')[0],
-        s2Title: document.querySelectorAll('.skills-category h4')[1],
-        s3Title: document.querySelectorAll('.skills-category h4')[2],
-        footTitle: document.querySelector('.footer__title'),
-        footSub: document.querySelector('.footer__contact-info .footer__subtitle')
-    };
-
-    const dict = i18n[currentLang];
-
-    for (const key in map) {
-        if (map[key] && dict[key]) {
-            map[key].innerHTML = dict[key];
+        function update() {
+            header.classList.toggle('is-scrolled', window.scrollY > 40);
         }
+        window.addEventListener('scroll', update, { passive: true });
+        update();
     }
-}
 
-document.addEventListener('DOMContentLoaded', () => {
-    const langBtn = document.getElementById('lang-toggle');
-    if (langBtn) {
-        langBtn.addEventListener('click', toggleLanguage);
-    }
-});
+    /* ======================================================================
+       Boot
+       ====================================================================== */
+    document.addEventListener('DOMContentLoaded', function () {
+        initLanguage();
+        initMobileMenu();
+        initCursor();
+        initMagneticButtons();
+        initSmoothScroll();
+        initScrollAnimations();
+        initHeaderScroll();
+        document.body.classList.remove('loading');
+    });
+
+})();

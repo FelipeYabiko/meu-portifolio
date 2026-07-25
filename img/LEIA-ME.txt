@@ -1,0 +1,12 @@
+Coloque aqui os prints dos projetos, com estes nomes exatos:
+
+  pega-a-visao.png
+  mercado.png
+  party-ranking.png
+
+Formato sugerido: 1200x800px, PNG ou JPG.
+Enquanto o arquivo nao existir, o site mostra o gradiente
+no lugar (nao quebra nada).
+
+Coloque tambem na pasta raiz um og.png de 1200x630px --
+e a imagem que aparece no card de preview do WhatsApp e LinkedIn.
