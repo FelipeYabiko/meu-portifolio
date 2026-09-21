@@ -22,6 +22,16 @@
             navExperience: 'Experiência',
             navContact: 'Contato',
 
+            idxServices: 'Serviços',
+            idxProjects: 'Trabalho selecionado',
+            idxExperience: 'Trajetória',
+
+            statusAvailable: 'Disponível para projetos',
+            stat1: 'Produtos no ar',
+            stat2: 'Time que liderei',
+            stat3: 'Inglês certificado',
+            stat4: 'Formatura prevista',
+
             heroEyebrow: 'ENGENHARIA DE SOFTWARE <span class="accent">·</span> DADOS <span class="accent">·</span> AUTOMAÇÃO',
             heroDesc: 'Transformo planilha e processo manual em sistema que roda sozinho. <span class="accent">Dashboards</span>, <span class="accent">automações</span> e aplicações web — do ETL em Python à interface em Next.js.',
             heroBtnPrimary: 'Ver projetos <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>',
@@ -50,12 +60,14 @@
 
             projectsTitle: 'Projetos <br /> <span class="accent">selecionados</span>',
             projectsSub: 'Uma seleção do que construí — do levantamento de requisitos ao deploy.',
-            p1Desc: 'Plataforma que conecta óticas a clínicas oftalmológicas parceiras. A ótica cadastra o paciente que chegou sem receita, agenda com a clínica, recebe a receita digital e registra a venda do óculos — com isolamento total de dados entre as duas organizações. Tech lead de um time de 6 pessoas.',
-            p1Meta: 'TCC · Tech lead · Time de 6 pessoas · No ar',
-            p2Desc: 'Vitrine digital do comércio de bairro. Mercadinho, padaria, açougue e barbearia publicam produto com foto e preço, imprimem o QR Code e colam na porta — quem passa na rua já vê o catálogo no celular e chama no WhatsApp. Sem app para instalar e sem intermediário na conversa.',
-            p2Meta: 'Produto próprio · Em desenvolvimento',
-            p3Desc: 'Ferramenta de votação e ranking de vídeos com geração automática do vídeo final. O pipeline roda em GitHub Actions, baixa e processa cada clipe e monta a compilação do resultado sem intervenção manual.',
-            p3Meta: 'Projeto pessoal · No ar',
+            p1Desc: 'Site e catálogo das três casas da marca Dep\'s, na Praia dos Namorados. Home com cenas 3D em Three.js, catálogo por casa e sacola que fecha o pedido direto no WhatsApp. Na mesa do restaurante, o cliente lê o QR Code e abre o cardápio; o dono cadastra produto, monta a promoção do dia e gera o QR num painel próprio, com Supabase e políticas de acesso por trás.',
+            p1Meta: 'Projeto para cliente · No ar',
+            p2Desc: 'Plataforma que conecta óticas a clínicas oftalmológicas parceiras. A ótica cadastra o paciente que chegou sem receita, agenda com a clínica, recebe a receita digital e registra a venda do óculos — com isolamento total de dados entre as duas organizações. Tech lead de um time de 6 pessoas.',
+            p2Meta: 'TCC · Tech lead · Time de 6 pessoas · No ar',
+            p3Desc: 'Vitrine digital do comércio de bairro. Mercadinho, padaria, açougue e barbearia publicam produto com foto e preço, imprimem o QR Code e colam na porta — quem passa na rua já vê o catálogo no celular e chama no WhatsApp. Sem app para instalar e sem intermediário na conversa.',
+            p3Meta: 'Produto próprio · Em desenvolvimento',
+            p4Desc: 'Ferramenta de votação e ranking de vídeos com geração automática do vídeo final. O pipeline roda em GitHub Actions, baixa e processa cada clipe e monta a compilação do resultado sem intervenção manual.',
+            p4Meta: 'Projeto pessoal · No ar',
             viewRepo: 'Ver repositório <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>',
             viewLive: 'Ver ao vivo <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>',
             miniTitle: 'Outros projetos',
@@ -91,6 +103,16 @@
             navExperience: 'Experience',
             navContact: 'Contact',
 
+            idxServices: 'Services',
+            idxProjects: 'Selected work',
+            idxExperience: 'Background',
+
+            statusAvailable: 'Available for projects',
+            stat1: 'Products live',
+            stat2: 'Team I led',
+            stat3: 'Certified English',
+            stat4: 'Expected graduation',
+
             heroEyebrow: 'SOFTWARE ENGINEERING <span class="accent">·</span> DATA <span class="accent">·</span> AUTOMATION',
             heroDesc: 'I turn spreadsheets and manual processes into systems that run on their own. <span class="accent">Dashboards</span>, <span class="accent">automation</span> and web apps — from the Python ETL to the Next.js interface.',
             heroBtnPrimary: 'View projects <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>',
@@ -119,12 +141,14 @@
 
             projectsTitle: 'Selected <br /> <span class="accent">projects</span>',
             projectsSub: 'A selection of what I have built — from requirements gathering to deployment.',
-            p1Desc: 'Platform connecting optical stores to partner ophthalmology clinics. The store registers a customer who arrived without a prescription, books the appointment, receives the digital prescription and records the eyewear sale — with full data isolation between the two organisations. Tech lead of a 6-person team.',
-            p1Meta: 'Capstone project · Tech lead · Team of 6 · Live',
-            p2Desc: 'Digital storefront for neighbourhood businesses. Grocers, bakeries, butchers and barbers publish products with photo and price, print a QR code and stick it on the door — passers-by see the catalogue on their phone and message on WhatsApp. No app to install, no middleman in the conversation.',
-            p2Meta: 'Own product · In development',
-            p3Desc: 'Video voting and ranking tool with automatic generation of the final video. The pipeline runs on GitHub Actions, downloads and processes each clip, and assembles the result compilation with no manual work.',
-            p3Meta: 'Personal project · Live',
+            p1Desc: 'Website and catalogue for the three venues of the Dep\'s brand in Praia dos Namorados, Brazil. Home page built on Three.js scenes, a catalogue per venue and a basket that closes the order straight through WhatsApp. At the restaurant table the customer scans a QR code to open the menu; the owner adds products, builds the daily special and generates the QR code from an admin panel, backed by Supabase and row-level access policies.',
+            p1Meta: 'Client project · Live',
+            p2Desc: 'Platform connecting optical stores to partner ophthalmology clinics. The store registers a customer who arrived without a prescription, books the appointment, receives the digital prescription and records the eyewear sale — with full data isolation between the two organisations. Tech lead of a 6-person team.',
+            p2Meta: 'Capstone project · Tech lead · Team of 6 · Live',
+            p3Desc: 'Digital storefront for neighbourhood businesses. Grocers, bakeries, butchers and barbers publish products with photo and price, print a QR code and stick it on the door — passers-by see the catalogue on their phone and message on WhatsApp. No app to install, no middleman in the conversation.',
+            p3Meta: 'Own product · In development',
+            p4Desc: 'Video voting and ranking tool with automatic generation of the final video. The pipeline runs on GitHub Actions, downloads and processes each clip, and assembles the result compilation with no manual work.',
+            p4Meta: 'Personal project · Live',
             viewRepo: 'View repository <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>',
             viewLive: 'View live <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>',
             miniTitle: 'Other projects',
@@ -317,10 +341,12 @@
         var ease = 'power3.out';
 
         gsap.timeline({ delay: 0.2 })
-            .from('.hero__subtitle', { y: 40, opacity: 0, duration: 1, ease: ease })
+            .from('.hero__status', { y: 20, opacity: 0, duration: 0.8, ease: ease })
+            .from('.hero__subtitle', { y: 40, opacity: 0, duration: 1, ease: ease }, '-=0.5')
             .from('.hero__title-line', { yPercent: 120, duration: 1.2, stagger: 0.15, ease: 'power4.out' }, '-=0.6')
             .from('.hero__description', { y: 40, opacity: 0, duration: 1, ease: ease }, '-=0.8')
-            .from('.hero__actions', { y: 20, opacity: 0, duration: 1, ease: ease }, '-=0.8');
+            .from('.hero__actions', { y: 20, opacity: 0, duration: 1, ease: ease }, '-=0.8')
+            .from('.hero__stats > div', { y: 24, opacity: 0, duration: 0.9, stagger: 0.08, ease: ease }, '-=0.7');
 
         gsap.utils.toArray('.section-title.reveal-text').forEach(function (title) {
             gsap.from(title, {
@@ -361,6 +387,43 @@
     }
 
     /* ======================================================================
+       Barra de progresso da leitura
+       ====================================================================== */
+    function initScrollProgress() {
+        var bar = document.getElementById('scroll-progress');
+        if (!bar) return;
+
+        function update() {
+            var max = document.documentElement.scrollHeight - window.innerHeight;
+            var ratio = max > 0 ? window.scrollY / max : 0;
+            bar.style.transform = 'scaleX(' + ratio + ')';
+        }
+        window.addEventListener('scroll', update, { passive: true });
+        window.addEventListener('resize', update);
+        update();
+    }
+
+    /* ======================================================================
+       Relógio local — mostra que tem gente do outro lado
+       ====================================================================== */
+    function initClock() {
+        var el = document.getElementById('local-time');
+        if (!el) return;
+
+        function tick() {
+            // Fixo em São Paulo: o horário é o meu, não o de quem visita.
+            var now = new Date().toLocaleTimeString(currentLang === 'pt' ? 'pt-BR' : 'en-GB', {
+                timeZone: 'America/Sao_Paulo',
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+            el.textContent = now;
+        }
+        tick();
+        setInterval(tick, 30000);
+    }
+
+    /* ======================================================================
        Boot
        ====================================================================== */
     document.addEventListener('DOMContentLoaded', function () {
@@ -371,6 +434,8 @@
         initSmoothScroll();
         initScrollAnimations();
         initHeaderScroll();
+        initScrollProgress();
+        initClock();
         document.body.classList.remove('loading');
     });
 

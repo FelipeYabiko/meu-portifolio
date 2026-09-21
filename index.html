@@ -22,17 +22,17 @@
     <meta property="og:image:height" content="630">
     <meta property="og:locale" content="pt_BR">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="theme-color" content="#0c0c0c">
+    <meta name="theme-color" content="#0A0A0B">
 
     <!-- Favicon inline: sem arquivo extra -->
     <link rel="icon"
-        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%230c0c0c'/><text x='50' y='68' font-family='monospace' font-size='52' font-weight='700' fill='%23FF5520' text-anchor='middle'>F</text></svg>">
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%230A0A0B'/><text x='50' y='70' font-family='Arial Black, sans-serif' font-size='58' font-weight='900' fill='%23FF5520' text-anchor='middle'>F</text></svg>">
 
-    <!-- Fonts: Inter & Space Grotesk -->
+    <!-- Fonts: Anton (display), Inter (texto), JetBrains Mono (metadados) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
         rel="stylesheet">
 
     <link rel="stylesheet" href="styles.css">
@@ -45,6 +45,12 @@
     <div class="cursor-follower"></div>
 
     <div class="noise-overlay"></div>
+    <div class="scroll-progress" id="scroll-progress"></div>
+
+    <!-- Colunas de referência ao fundo -->
+    <div class="grid-overlay" aria-hidden="true">
+        <span></span><span></span><span></span><span></span>
+    </div>
 
     <!-- ==========================================================
          Header
@@ -55,16 +61,13 @@
 
             <nav class="nav" id="nav">
                 <ul class="nav__list">
-                    <li><a href="#servicos" class="nav__link magnetic hover-reveal" data-strength="20"
-                            data-i18n="navServices">Serviços</a></li>
-                    <li><a href="#projetos" class="nav__link magnetic hover-reveal" data-strength="20"
-                            data-i18n="navProjects">Projetos</a></li>
-                    <li><a href="#experiencia" class="nav__link magnetic hover-reveal" data-strength="20"
-                            data-i18n="navExperience">Experiência</a></li>
-                    <li><a href="#contato" class="btn --cta magnetic" data-strength="40"><span class="btn-text"
-                                data-i18n="navContact">Contato</span></a></li>
-                    <li><button class="lang-toggle magnetic" id="lang-toggle" data-strength="20"
-                            aria-label="Switch language">EN</button></li>
+                    <li><a href="#servicos" class="nav__link hover-reveal" data-i18n="navServices">Serviços</a></li>
+                    <li><a href="#projetos" class="nav__link hover-reveal" data-i18n="navProjects">Projetos</a></li>
+                    <li><a href="#experiencia" class="nav__link hover-reveal" data-i18n="navExperience">Experiência</a>
+                    </li>
+                    <li><a href="#contato" class="btn --cta magnetic" data-strength="30"><span class="btn-bg"></span>
+                            <span class="btn-text" data-i18n="navContact">Contato</span></a></li>
+                    <li><button class="lang-toggle" id="lang-toggle" aria-label="Switch language">EN</button></li>
                 </ul>
             </nav>
 
@@ -83,6 +86,13 @@
         <section class="hero">
             <div class="hero__container">
                 <div class="hero__content">
+                    <div class="hero__status">
+                        <span class="status-pill">
+                            <span class="status-pill__dot"></span>
+                            <span data-i18n="statusAvailable">Disponível para projetos</span>
+                        </span>
+                    </div>
+
                     <div class="reveal-mask">
                         <p class="hero__subtitle" data-i18n="heroEyebrow">ENGENHARIA DE SOFTWARE <span
                                 class="accent">·</span> DADOS <span class="accent">·</span> AUTOMAÇÃO</p>
@@ -101,25 +111,44 @@
                             Next.js.</p>
                     </div>
 
-                    <div class="hero__actions reveal-fade">
-                        <a href="#projetos" class="btn --cta --large magnetic" data-strength="50">
+                    <div class="hero__actions">
+                        <a href="#projetos" class="btn --cta --large magnetic" data-strength="30">
                             <span class="btn-bg"></span>
-                            <span class="btn-text" data-i18n="heroBtnPrimary">Ver projetos <svg width="20" height="20"
+                            <span class="btn-text" data-i18n="heroBtnPrimary">Ver projetos <svg width="16" height="16"
                                     viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                     stroke-linecap="round" stroke-linejoin="round">
                                     <line x1="5" y1="12" x2="19" y2="12"></line>
                                     <polyline points="12 5 19 12 12 19"></polyline>
                                 </svg></span>
                         </a>
-                        <a href="#contato" class="btn --ghost --large magnetic" data-strength="50">
+                        <a href="#contato" class="btn --ghost --large magnetic" data-strength="30">
                             <span class="btn-text" data-i18n="heroBtnSecondary">Falar comigo</span>
                         </a>
+                    </div>
+
+                    <div class="hero__stats">
+                        <div>
+                            <span class="hero__stat-num">04</span>
+                            <span class="hero__stat-label" data-i18n="stat1">Produtos no ar</span>
+                        </div>
+                        <div>
+                            <span class="hero__stat-num">06</span>
+                            <span class="hero__stat-label" data-i18n="stat2">Time que liderei</span>
+                        </div>
+                        <div>
+                            <span class="hero__stat-num">B2</span>
+                            <span class="hero__stat-label" data-i18n="stat3">Inglês certificado</span>
+                        </div>
+                        <div>
+                            <span class="hero__stat-num">2027</span>
+                            <span class="hero__stat-label" data-i18n="stat4">Formatura prevista</span>
+                        </div>
                     </div>
                 </div>
             </div>
             <div class="scroll-indicator">
-                <div class="mouse"></div>
                 <span class="scroll-text">SCROLL</span>
+                <div class="mouse"></div>
             </div>
         </section>
 
@@ -132,16 +161,20 @@
                 <span>NEXT.JS</span><span class="separator">◆</span>
                 <span>PYTHON</span><span class="separator">◆</span>
                 <span>REACT</span><span class="separator">◆</span>
+                <span>SUPABASE</span><span class="separator">◆</span>
                 <span>FIREBASE</span><span class="separator">◆</span>
                 <span>PANDAS</span><span class="separator">◆</span>
+                <span>THREE.JS</span><span class="separator">◆</span>
                 <span>LLM APIs</span><span class="separator">◆</span>
                 <span>PLAYWRIGHT</span><span class="separator">◆</span>
                 <span>TYPESCRIPT</span><span class="separator">◆</span>
                 <span>NEXT.JS</span><span class="separator">◆</span>
                 <span>PYTHON</span><span class="separator">◆</span>
                 <span>REACT</span><span class="separator">◆</span>
+                <span>SUPABASE</span><span class="separator">◆</span>
                 <span>FIREBASE</span><span class="separator">◆</span>
                 <span>PANDAS</span><span class="separator">◆</span>
+                <span>THREE.JS</span><span class="separator">◆</span>
                 <span>LLM APIs</span><span class="separator">◆</span>
                 <span>PLAYWRIGHT</span><span class="separator">◆</span>
             </div>
@@ -153,6 +186,10 @@
         <section id="servicos" class="services section-padding">
             <div class="container">
                 <div class="section-header">
+                    <div class="section-index">
+                        <span class="section-index__num">[01]</span>
+                        <span class="section-index__name" data-i18n="idxServices">Serviços</span>
+                    </div>
                     <h2 class="section-title reveal-text" data-i18n="servicesTitle">O que eu <br /> <span
                             class="accent">construo</span></h2>
                     <p class="section-subtitle reveal-fade" data-i18n="servicesSub">Três frentes que resolvem o mesmo
@@ -163,10 +200,12 @@
                 <div class="services-grid">
                     <article class="service-card reveal-fade">
                         <span class="service-card__label" data-i18n="s1Label">Dados</span>
-                        <h3 class="service-card__title" data-i18n="s1Title">Dashboards e indicadores</h3>
-                        <p class="service-card__desc" data-i18n="s1Desc">Seus dados estão em cinco planilhas e três
-                            sistemas que não conversam. Eu junto tudo num pipeline de ETL e entrego um painel que o time
-                            abre todo dia — não um relatório que ninguém lê.</p>
+                        <div>
+                            <h3 class="service-card__title" data-i18n="s1Title">Dashboards e indicadores</h3>
+                            <p class="service-card__desc" data-i18n="s1Desc">Seus dados estão em cinco planilhas e três
+                                sistemas que não conversam. Eu junto tudo num pipeline de ETL e entrego um painel que o
+                                time abre todo dia — não um relatório que ninguém lê.</p>
+                        </div>
                         <ul class="service-card__list">
                             <li data-i18n="s1i1">Integração de múltiplas fontes</li>
                             <li data-i18n="s1i2">Atualização automática</li>
@@ -176,10 +215,12 @@
 
                     <article class="service-card reveal-fade">
                         <span class="service-card__label" data-i18n="s2Label">Automação</span>
-                        <h3 class="service-card__title" data-i18n="s2Title">Automação de processos</h3>
-                        <p class="service-card__desc" data-i18n="s2Desc">Aquela rotina de copiar dado de PDF, baixar
-                            relatório do portal e colar na planilha. Eu escrevo o robô que faz isso sozinho e devolvo as
-                            horas para o time.</p>
+                        <div>
+                            <h3 class="service-card__title" data-i18n="s2Title">Automação de processos</h3>
+                            <p class="service-card__desc" data-i18n="s2Desc">Aquela rotina de copiar dado de PDF, baixar
+                                relatório do portal e colar na planilha. Eu escrevo o robô que faz isso sozinho e
+                                devolvo as horas para o time.</p>
+                        </div>
                         <ul class="service-card__list">
                             <li data-i18n="s2i1">Extração de PDF e nota fiscal</li>
                             <li data-i18n="s2i2">Navegação automatizada em portais</li>
@@ -189,10 +230,12 @@
 
                     <article class="service-card reveal-fade">
                         <span class="service-card__label" data-i18n="s3Label">Produto</span>
-                        <h3 class="service-card__title" data-i18n="s3Title">Aplicações web sob medida</h3>
-                        <p class="service-card__desc" data-i18n="s3Desc">Sistema de agendamento, catálogo, área do
-                            cliente, painel interno. Feito do zero para o seu processo, não um template genérico
-                            adaptado na marra.</p>
+                        <div>
+                            <h3 class="service-card__title" data-i18n="s3Title">Aplicações web sob medida</h3>
+                            <p class="service-card__desc" data-i18n="s3Desc">Sistema de agendamento, catálogo, área do
+                                cliente, painel interno. Feito do zero para o seu processo, não um template genérico
+                                adaptado na marra.</p>
+                        </div>
                         <ul class="service-card__list">
                             <li data-i18n="s3i1">Next.js e TypeScript</li>
                             <li data-i18n="s3i2">Login e multi-usuário</li>
@@ -209,6 +252,10 @@
         <section id="projetos" class="projects section-padding">
             <div class="container">
                 <div class="section-header">
+                    <div class="section-index">
+                        <span class="section-index__num">[02]</span>
+                        <span class="section-index__name" data-i18n="idxProjects">Trabalho selecionado</span>
+                    </div>
                     <h2 class="section-title reveal-text" data-i18n="projectsTitle">Projetos <br /> <span
                             class="accent">selecionados</span></h2>
                     <p class="section-subtitle reveal-fade" data-i18n="projectsSub">Uma seleção do que construí — do
@@ -217,10 +264,45 @@
 
                 <div class="project-showcase">
 
-                    <!-- Projeto 1 — Pega a Visão -->
+                    <!-- Projeto 1 — Dep's -->
                     <article class="project-row">
                         <div class="project-row__info">
                             <span class="project-row__number">01</span>
+                            <h3 class="project-row__title">Dep's</h3>
+                            <div class="project-tags">
+                                <span class="tag">Three.js</span>
+                                <span class="tag">GSAP</span>
+                                <span class="tag">Supabase</span>
+                                <span class="tag">Vercel</span>
+                            </div>
+                            <p class="project-row__desc" data-i18n="p1Desc">Site e catálogo das três casas da marca
+                                Dep's, na Praia dos Namorados. Home com cenas 3D em Three.js, catálogo por casa e sacola
+                                que fecha o pedido direto no WhatsApp. Na mesa do restaurante, o cliente lê o QR Code e
+                                abre o cardápio; o dono cadastra produto, monta a promoção do dia e gera o QR num painel
+                                próprio, com Supabase e políticas de acesso por trás.</p>
+                            <a href="https://site-deps.vercel.app/" target="_blank" rel="noopener"
+                                class="view-project-link" data-i18n="viewLive">Ver ao vivo <svg width="14" height="14"
+                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                                    <polyline points="12 5 19 12 12 19"></polyline>
+                                </svg></a>
+                            <p class="project-row__meta" data-i18n="p1Meta">Projeto para cliente · No ar</p>
+                        </div>
+                        <div class="project-row__image-wrap magnetic-container">
+                            <div class="browser-bar"><i></i><i></i><i></i><span>site-deps.vercel.app</span></div>
+                            <div class="project-row__image placeholder-pattern"
+                                style="background: linear-gradient(135deg, #1A1A1D 0%, #2A2318 100%);">
+                                <img src="img/deps.png" alt="Tela do site do Dep's" loading="lazy"
+                                    onerror="this.remove()">
+                                <div class="abstract-shape shape-1"></div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Projeto 2 — Pega a Visão -->
+                    <article class="project-row reverse">
+                        <div class="project-row__info">
+                            <span class="project-row__number">02</span>
                             <h3 class="project-row__title">Pega a Visão</h3>
                             <div class="project-tags">
                                 <span class="tag">Next.js</span>
@@ -228,7 +310,7 @@
                                 <span class="tag">Firebase</span>
                                 <span class="tag">Vercel</span>
                             </div>
-                            <p class="project-row__desc" data-i18n="p1Desc">Plataforma que conecta óticas a clínicas
+                            <p class="project-row__desc" data-i18n="p2Desc">Plataforma que conecta óticas a clínicas
                                 oftalmológicas parceiras. A ótica cadastra o paciente que chegou sem receita, agenda com
                                 a clínica, recebe a receita digital e registra a venda do óculos — com isolamento total
                                 de dados entre as duas organizações. Tech lead de um time de 6 pessoas.</p>
@@ -238,13 +320,13 @@
                                     <line x1="5" y1="12" x2="19" y2="12"></line>
                                     <polyline points="12 5 19 12 12 19"></polyline>
                                 </svg></a>
-                            <p class="project-row__meta" data-i18n="p1Meta">TCC · Tech lead · Time de 6 pessoas · No ar
+                            <p class="project-row__meta" data-i18n="p2Meta">TCC · Tech lead · Time de 6 pessoas · No ar
                             </p>
                         </div>
                         <div class="project-row__image-wrap magnetic-container">
+                            <div class="browser-bar"><i></i><i></i><i></i><span>pega-a-visao.vercel.app</span></div>
                             <div class="project-row__image placeholder-pattern"
                                 style="background: linear-gradient(135deg, #1A1A1D 0%, #102B30 100%);">
-                                <!-- Trocar o src quando tiver o print: img/pega-a-visao.png -->
                                 <img src="img/pega-a-visao.png" alt="Tela do Pega a Visão" loading="lazy"
                                     onerror="this.remove()">
                                 <div class="abstract-shape shape-2"></div>
@@ -252,10 +334,10 @@
                         </div>
                     </article>
 
-                    <!-- Projeto 2 — FinançasIA -->
-                    <article class="project-row reverse">
+                    <!-- Projeto 3 — Mercado -->
+                    <article class="project-row">
                         <div class="project-row__info">
-                            <span class="project-row__number">02</span>
+                            <span class="project-row__number">03</span>
                             <h3 class="project-row__title">Mercado</h3>
                             <div class="project-tags">
                                 <span class="tag">Next.js</span>
@@ -263,7 +345,7 @@
                                 <span class="tag">PWA</span>
                                 <span class="tag">Geolocalização</span>
                             </div>
-                            <p class="project-row__desc" data-i18n="p2Desc">Vitrine digital do comércio de bairro.
+                            <p class="project-row__desc" data-i18n="p3Desc">Vitrine digital do comércio de bairro.
                                 Mercadinho, padaria, açougue e barbearia publicam produto com foto e preço, imprimem o
                                 QR Code e colam na porta — quem passa na rua já vê o catálogo no celular e chama no
                                 WhatsApp. Sem app para instalar e sem intermediário na conversa.</p>
@@ -273,9 +355,10 @@
                                     <line x1="5" y1="12" x2="19" y2="12"></line>
                                     <polyline points="12 5 19 12 12 19"></polyline>
                                 </svg></a>
-                            <p class="project-row__meta" data-i18n="p2Meta">Produto próprio · Em desenvolvimento</p>
+                            <p class="project-row__meta" data-i18n="p3Meta">Produto próprio · Em desenvolvimento</p>
                         </div>
                         <div class="project-row__image-wrap magnetic-container">
+                            <div class="browser-bar"><i></i><i></i><i></i><span>mercado-iota-ten.vercel.app</span></div>
                             <div class="project-row__image placeholder-pattern"
                                 style="background: linear-gradient(135deg, #FF5520 0%, #512520 100%);">
                                 <img src="img/mercado.png" alt="Tela do Mercado" loading="lazy"
@@ -285,17 +368,17 @@
                         </div>
                     </article>
 
-                    <!-- Projeto 3 — Party Ranking -->
-                    <article class="project-row">
+                    <!-- Projeto 4 — Party Ranking -->
+                    <article class="project-row reverse">
                         <div class="project-row__info">
-                            <span class="project-row__number">03</span>
+                            <span class="project-row__number">04</span>
                             <h3 class="project-row__title">Party Ranking</h3>
                             <div class="project-tags">
                                 <span class="tag">Next.js</span>
                                 <span class="tag">GitHub Actions</span>
                                 <span class="tag">FFmpeg</span>
                             </div>
-                            <p class="project-row__desc" data-i18n="p3Desc">Ferramenta de votação e ranking de vídeos
+                            <p class="project-row__desc" data-i18n="p4Desc">Ferramenta de votação e ranking de vídeos
                                 com geração automática do vídeo final. O pipeline roda em GitHub Actions, baixa e
                                 processa cada clipe e monta a compilação do resultado sem intervenção manual.</p>
                             <a href="https://partyrank-vercel.vercel.app" target="_blank" rel="noopener"
@@ -304,9 +387,10 @@
                                     <line x1="5" y1="12" x2="19" y2="12"></line>
                                     <polyline points="12 5 19 12 12 19"></polyline>
                                 </svg></a>
-                            <p class="project-row__meta" data-i18n="p3Meta">Projeto pessoal · No ar</p>
+                            <p class="project-row__meta" data-i18n="p4Meta">Projeto pessoal · No ar</p>
                         </div>
                         <div class="project-row__image-wrap magnetic-container">
+                            <div class="browser-bar"><i></i><i></i><i></i><span>partyrank-vercel.vercel.app</span></div>
                             <div class="project-row__image placeholder-pattern"
                                 style="background: linear-gradient(135deg, #1A1A1D 0%, #301014 100%);">
                                 <img src="img/party-ranking.png" alt="Tela do Party Ranking" loading="lazy"
@@ -363,96 +447,110 @@
              Experiência, formação e stack
              ========================================================== -->
         <section id="experiencia" class="education section-padding">
-            <div class="container dual-grid">
-
-                <div class="resume-col">
-                    <h2 class="section-title reveal-text" data-i18n="expTitle">Experiência <br /> <span
-                            class="accent">e formação</span></h2>
-
-                    <div class="timeline">
-                        <div class="timeline-item reveal-fade">
-                            <div class="timeline-dot"></div>
-                            <span class="timeline-date" data-i18n="exp1Date">Mar 2026 — Atual</span>
-                            <h3 class="timeline-title" data-i18n="exp1Title">Estagiário de Engenharia de Software</h3>
-                            <p class="timeline-subtitle">Sotreq S/A — Sumaré, SP</p>
-                            <p class="timeline-desc" data-i18n="exp1Desc">Desenvolvimento de pipelines de ETL em Python
-                                e painéis de indicadores para a área comercial. Automação de rotinas de coleta de dados
-                                com Playwright e pandas.</p>
-                        </div>
-
-                        <div class="timeline-item reveal-fade">
-                            <div class="timeline-dot"></div>
-                            <span class="timeline-date">Ago 2023 — Jul 2027</span>
-                            <h3 class="timeline-title" data-i18n="edu1Title">Bacharelado em Engenharia de Software</h3>
-                            <p class="timeline-subtitle">PUC-Campinas — Campinas, SP</p>
-                            <p class="timeline-desc" data-i18n="edu1Desc">Formação com projetos integradores semestrais
-                                em desenvolvimento full-stack, machine learning e arquitetura de software.</p>
-                        </div>
-
-                        <div class="timeline-item reveal-fade">
-                            <div class="timeline-dot"></div>
-                            <span class="timeline-date">2019 — 2021</span>
-                            <h3 class="timeline-title" data-i18n="edu2Title">Técnico em Informática</h3>
-                            <p class="timeline-subtitle">CEMEP — Paulínia, SP</p>
-                            <p class="timeline-desc" data-i18n="edu2Desc">Fundamentos de programação, lógica e
-                                integração de sistemas.</p>
-                        </div>
-
-                        <div class="timeline-item reveal-fade">
-                            <div class="timeline-dot"></div>
-                            <span class="timeline-date" data-i18n="certDate">Certificação</span>
-                            <h3 class="timeline-title" data-i18n="certTitle">Inglês — Nível B2</h3>
-                            <p class="timeline-subtitle">Voxy</p>
-                        </div>
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-index">
+                        <span class="section-index__num">[03]</span>
+                        <span class="section-index__name" data-i18n="idxExperience">Trajetória</span>
                     </div>
                 </div>
 
-                <div class="resume-col">
-                    <h2 class="section-title reveal-text" data-i18n="stackTitle">Stack <br /> <span
-                            class="accent">técnica</span></h2>
+                <div class="dual-grid">
+                    <div class="resume-col">
+                        <h2 class="section-title reveal-text" data-i18n="expTitle">Experiência <br /> <span
+                                class="accent">e formação</span></h2>
 
-                    <div class="skills-block reveal-fade">
-                        <div class="skills-category">
-                            <h4 data-i18n="k1Title">Front-end</h4>
-                            <div class="skills-list">
-                                <span class="skill-tag">TypeScript</span>
-                                <span class="skill-tag">React</span>
-                                <span class="skill-tag">Next.js</span>
-                                <span class="skill-tag">Tailwind CSS</span>
-                                <span class="skill-tag">shadcn/ui</span>
+                        <div class="timeline" style="margin-top: var(--space-lg);">
+                            <div class="timeline-item reveal-fade">
+                                <div class="timeline-dot"></div>
+                                <span class="timeline-date" data-i18n="exp1Date">Mar 2026 — Atual</span>
+                                <h3 class="timeline-title" data-i18n="exp1Title">Estagiário de Engenharia de Software
+                                </h3>
+                                <p class="timeline-subtitle">Sotreq S/A — Sumaré, SP</p>
+                                <p class="timeline-desc" data-i18n="exp1Desc">Desenvolvimento de pipelines de ETL em
+                                    Python e painéis de indicadores para a área comercial. Automação de rotinas de
+                                    coleta de dados com Playwright e pandas.</p>
+                            </div>
+
+                            <div class="timeline-item reveal-fade">
+                                <div class="timeline-dot"></div>
+                                <span class="timeline-date">Ago 2023 — Jul 2027</span>
+                                <h3 class="timeline-title" data-i18n="edu1Title">Bacharelado em Engenharia de Software
+                                </h3>
+                                <p class="timeline-subtitle">PUC-Campinas — Campinas, SP</p>
+                                <p class="timeline-desc" data-i18n="edu1Desc">Formação com projetos integradores
+                                    semestrais em desenvolvimento full-stack, machine learning e arquitetura de
+                                    software.</p>
+                            </div>
+
+                            <div class="timeline-item reveal-fade">
+                                <div class="timeline-dot"></div>
+                                <span class="timeline-date">2019 — 2021</span>
+                                <h3 class="timeline-title" data-i18n="edu2Title">Técnico em Informática</h3>
+                                <p class="timeline-subtitle">CEMEP — Paulínia, SP</p>
+                                <p class="timeline-desc" data-i18n="edu2Desc">Fundamentos de programação, lógica e
+                                    integração de sistemas.</p>
+                            </div>
+
+                            <div class="timeline-item reveal-fade">
+                                <div class="timeline-dot"></div>
+                                <span class="timeline-date" data-i18n="certDate">Certificação</span>
+                                <h3 class="timeline-title" data-i18n="certTitle">Inglês — Nível B2</h3>
+                                <p class="timeline-subtitle">Voxy</p>
                             </div>
                         </div>
+                    </div>
 
-                        <div class="skills-category">
-                            <h4 data-i18n="k2Title">Back-end e dados</h4>
-                            <div class="skills-list">
-                                <span class="skill-tag">Python</span>
-                                <span class="skill-tag">Node.js</span>
-                                <span class="skill-tag">Pandas</span>
-                                <span class="skill-tag">Firebase / Firestore</span>
-                                <span class="skill-tag">MongoDB</span>
-                                <span class="skill-tag">SQL</span>
+                    <div class="resume-col">
+                        <h2 class="section-title reveal-text" data-i18n="stackTitle">Stack <br /> <span
+                                class="accent">técnica</span></h2>
+
+                        <div class="skills-block reveal-fade" style="margin-top: var(--space-lg);">
+                            <div class="skills-category">
+                                <h4 data-i18n="k1Title">Front-end</h4>
+                                <div class="skills-list">
+                                    <span class="skill-tag">TypeScript</span>
+                                    <span class="skill-tag">React</span>
+                                    <span class="skill-tag">Next.js</span>
+                                    <span class="skill-tag">Tailwind CSS</span>
+                                    <span class="skill-tag">shadcn/ui</span>
+                                    <span class="skill-tag">Three.js</span>
+                                    <span class="skill-tag">GSAP</span>
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="skills-category">
-                            <h4 data-i18n="k3Title">IA aplicada</h4>
-                            <div class="skills-list">
-                                <span class="skill-tag">APIs de LLM</span>
-                                <span class="skill-tag">Prompt Engineering</span>
-                                <span class="skill-tag">Function Calling</span>
-                                <span class="skill-tag">scikit-learn</span>
-                                <span class="skill-tag">NLP</span>
+                            <div class="skills-category">
+                                <h4 data-i18n="k2Title">Back-end e dados</h4>
+                                <div class="skills-list">
+                                    <span class="skill-tag">Python</span>
+                                    <span class="skill-tag">Node.js</span>
+                                    <span class="skill-tag">Pandas</span>
+                                    <span class="skill-tag">Supabase</span>
+                                    <span class="skill-tag">Firebase / Firestore</span>
+                                    <span class="skill-tag">MongoDB</span>
+                                    <span class="skill-tag">SQL</span>
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="skills-category">
-                            <h4 data-i18n="k4Title">Automação e infra</h4>
-                            <div class="skills-list">
-                                <span class="skill-tag">Playwright</span>
-                                <span class="skill-tag">Git / GitHub</span>
-                                <span class="skill-tag">GitHub Actions</span>
-                                <span class="skill-tag">Vercel</span>
+                            <div class="skills-category">
+                                <h4 data-i18n="k3Title">IA aplicada</h4>
+                                <div class="skills-list">
+                                    <span class="skill-tag">APIs de LLM</span>
+                                    <span class="skill-tag">Prompt Engineering</span>
+                                    <span class="skill-tag">Function Calling</span>
+                                    <span class="skill-tag">scikit-learn</span>
+                                    <span class="skill-tag">NLP</span>
+                                </div>
+                            </div>
+
+                            <div class="skills-category">
+                                <h4 data-i18n="k4Title">Automação e infra</h4>
+                                <div class="skills-list">
+                                    <span class="skill-tag">Playwright</span>
+                                    <span class="skill-tag">Git / GitHub</span>
+                                    <span class="skill-tag">GitHub Actions</span>
+                                    <span class="skill-tag">Vercel</span>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -477,6 +575,7 @@
                     <div class="footer__actions">
                         <a href="mailto:fyabiko@gmail.com?subject=Vi%20seu%20portf%C3%B3lio" class="btn --cta magnetic"
                             data-strength="30">
+                            <span class="btn-bg"></span>
                             <span class="btn-text" data-i18n="ctaMail">Me mandar um e-mail</span>
                         </a>
                     </div>
@@ -486,13 +585,13 @@
             <div class="footer__bottom reveal-fade">
                 <div class="footer__socials">
                     <a href="https://github.com/FelipeYabiko" target="_blank" rel="noopener"
-                        class="social-link magnetic">GitHub</a>
+                        class="social-link">GitHub</a>
                     <a href="https://www.linkedin.com/in/felipe-yabiko-b57574379/" target="_blank" rel="noopener"
-                        class="social-link magnetic">LinkedIn</a>
+                        class="social-link">LinkedIn</a>
                 </div>
                 <div class="footer__credits">
                     <p>&copy; 2026 Felipe Yabiko Nogueira.</p>
-                    <p class="time">Campinas, SP — Brasil</p>
+                    <p class="time">Campinas, SP — <span id="local-time">Brasil</span></p>
                 </div>
             </div>
         </div>
