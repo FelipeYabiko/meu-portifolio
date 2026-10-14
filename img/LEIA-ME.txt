@@ -1,7 +1,7 @@
 Prints dos projetos usados no site (versão .webp, 1600px de largura):
 
   deps.webp
-  pega-a-visao.webp
+  fonar.webp (quadro do motion do FONAR)
   mercado.webp
   party-ranking.webp
 
