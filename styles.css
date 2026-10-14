@@ -1003,7 +1003,8 @@ h6 {
     aspect-ratio: 4/3;
 }
 
-.project-row__image img {
+.project-row__image img,
+.project-row__image video {
     position: absolute;
     inset: 0;
     width: 100%;
@@ -1014,7 +1015,8 @@ h6 {
     transition: transform 0.9s var(--ease-out);
 }
 
-.project-row__image-wrap:hover .project-row__image img {
+.project-row__image-wrap:hover .project-row__image img,
+.project-row__image-wrap:hover .project-row__image video {
     transform: scale(1.03);
 }
 
@@ -1482,6 +1484,30 @@ body.nav-open .hamburger::after {
     .project-showcase {
         gap: var(--space-xl);
     }
+}
+
+/* Pausar/retomar o motion do card (WCAG 2.2.2: movimento com mais de 5 s) */
+.video-toggle {
+    position: absolute;
+    right: 14px;
+    bottom: 14px;
+    z-index: 3;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid var(--border-strong);
+    background: rgba(10, 10, 11, 0.72);
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.video-toggle:hover {
+    background: var(--accent-color);
+    color: var(--bg-color);
 }
 
 /* ==========================================================================

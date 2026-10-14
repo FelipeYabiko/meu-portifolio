@@ -1,0 +1,20 @@
+{
+ "feed_banana": {
+  "x": 29,
+  "y": 603.1875,
+  "width": 150,
+  "height": 15.390625
+ },
+ "produto_whats": {
+  "x": 82,
+  "y": 670,
+  "width": 290,
+  "height": 54
+ },
+ "loja_whats": {
+  "x": 18,
+  "y": 321.1875,
+  "width": 354,
+  "height": 50
+ }
+}

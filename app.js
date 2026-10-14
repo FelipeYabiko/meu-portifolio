@@ -69,6 +69,8 @@
             p4Desc: 'Ferramenta de votação e ranking de vídeos com geração automática do vídeo final. O pipeline roda em GitHub Actions, baixa e processa cada clipe e monta a compilação do resultado sem intervenção manual.',
             p4Meta: 'Projeto pessoal · No ar',
             viewRepo: 'Ver repositório <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>',
+            videoPause: 'Pausar animação',
+            videoPlay: 'Reproduzir animação',
             viewLive: 'Ver ao vivo <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>',
             miniTitle: 'Outros projetos',
             m1Desc: 'Classificação de sobrevivência de pacientes com dados clínicos. PCA para redução de dimensionalidade e GridSearchCV sobre KNN e MLP.',
@@ -152,6 +154,8 @@
             p4Desc: 'Video voting and ranking tool with automatic generation of the final video. The pipeline runs on GitHub Actions, downloads and processes each clip, and assembles the result compilation with no manual work.',
             p4Meta: 'Personal project · Live',
             viewRepo: 'View repository <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>',
+            videoPause: 'Pause animation',
+            videoPlay: 'Play animation',
             viewLive: 'View live <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>',
             miniTitle: 'Other projects',
             m1Desc: 'Patient survival classification from clinical data. PCA for dimensionality reduction and GridSearchCV over KNN and MLP architectures.',
@@ -203,6 +207,10 @@
 
         var btn = document.getElementById('lang-toggle');
         if (btn) btn.textContent = lang === 'pt' ? 'EN' : 'PT';
+
+        document.querySelectorAll('.project-row__video').forEach(function (v) {
+            if (v._botao) atualizarBotao(v);
+        });
 
         try { localStorage.setItem('lang', lang); } catch (e) { /* modo privado */ }
     }
@@ -377,6 +385,80 @@
     }
 
     /* ======================================================================
+       Motions dos cards de projeto
+       O vídeo só carrega quando o card chega perto da tela e só toca
+       enquanto está visível. Com "reduzir movimento", fica no pôster —
+       o botão ainda deixa a pessoa tocar se quiser.
+       ====================================================================== */
+    var ICONE_PAUSAR = '<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1"></rect><rect x="14" y="5" width="4" height="14" rx="1"></rect></svg>';
+    var ICONE_TOCAR = '<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5l12 7-12 7z"></path></svg>';
+
+    function initProjectVideos() {
+        var videos = document.querySelectorAll('.project-row__video');
+        if (!videos.length) return;
+
+        videos.forEach(function (video) {
+            // Escolha da pessoa: pausou, fica pausado mesmo rolando a página.
+            video._pausadoPeloUsuario = prefersReducedMotion;
+
+            var botao = document.createElement('button');
+            botao.type = 'button';
+            botao.className = 'video-toggle';
+            video.parentNode.appendChild(botao);
+            video._botao = botao;
+            atualizarBotao(video);
+
+            botao.addEventListener('click', function () {
+                carregar(video);
+                if (video.paused) {
+                    video._pausadoPeloUsuario = false;
+                    video.play().catch(function () { });
+                } else {
+                    video._pausadoPeloUsuario = true;
+                    video.pause();
+                }
+            });
+            video.addEventListener('play', function () { atualizarBotao(video); });
+            video.addEventListener('pause', function () { atualizarBotao(video); });
+        });
+
+        if (!('IntersectionObserver' in window)) return;
+
+        var observador = new IntersectionObserver(function (entradas) {
+            entradas.forEach(function (e) {
+                var video = e.target;
+                if (e.isIntersecting) {
+                    if (video._pausadoPeloUsuario) return;
+                    carregar(video);
+                    video.play().catch(function () { });
+                } else if (!video.paused) {
+                    video.pause();
+                }
+            });
+        }, { rootMargin: '200px 0px', threshold: 0.25 });
+
+        videos.forEach(function (v) { observador.observe(v); });
+    }
+
+    // MP4 (H.264) e WebM (VP9): o navegador fica com o primeiro que tocar.
+    function carregar(video) {
+        if (video._carregado) return;
+        video._carregado = true;
+        video.querySelectorAll('source[data-src]').forEach(function (s) {
+            s.src = s.getAttribute('data-src');
+        });
+        video.load();
+    }
+
+    function atualizarBotao(video) {
+        var dict = i18n[currentLang];
+        var tocando = !video.paused;
+        video._botao.innerHTML = tocando ? ICONE_PAUSAR : ICONE_TOCAR;
+        video._botao.setAttribute('aria-label', tocando ? dict.videoPause : dict.videoPlay);
+        video._botao.title = tocando ? dict.videoPause : dict.videoPlay;
+    }
+
+    /* ======================================================================
        Header com fundo ao rolar
        ====================================================================== */
     function initHeaderScroll() {
@@ -437,6 +519,7 @@
         initMagneticButtons();
         initSmoothScroll();
         initScrollAnimations();
+        initProjectVideos();
         initHeaderScroll();
         initScrollProgress();
         initClock();
