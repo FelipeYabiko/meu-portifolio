@@ -1,12 +1,13 @@
-Coloque aqui os prints dos projetos, com estes nomes exatos:
+Prints dos projetos usados no site (versão .webp, 1600px de largura):
 
-  pega-a-visao.png
-  mercado.png
-  party-ranking.png
+  deps.webp
+  pega-a-visao.webp
+  mercado.webp
+  party-ranking.webp
 
-Formato sugerido: 1200x800px, PNG ou JPG.
-Enquanto o arquivo nao existir, o site mostra o gradiente
-no lugar (nao quebra nada).
+Os .png são os originais em alta resolução. Para trocar um print,
+substitua o .png e gere o .webp de novo (1600px, qualidade ~82).
+Enquanto o arquivo não existir, o site mostra o gradiente no lugar.
 
-Coloque tambem na pasta raiz um og.png de 1200x630px --
-e a imagem que aparece no card de preview do WhatsApp e LinkedIn.
+O og.png (1200x630, na raiz) é a imagem do card de preview do
+WhatsApp e do LinkedIn.
