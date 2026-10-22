@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Felipe Yabiko Nogueira | Engenheiro de Software</title>
+    <title>Felipe Yabiko Nogueira — Engenheiro de Software</title>
     <meta name="description"
-        content="Engenheiro de software em Campinas, SP. Backend, integração com LLMs e pipelines de dados — Python, TypeScript, Next.js e FastAPI.">
+        content="Engenheiro de software em Campinas, SP. Dados, automação e IA aplicada: servidores MCP, agentes com tool use, pipelines de dados e APIs em Python e TypeScript.">
 
     <!-- Se comprar um domínio próprio, troque as 3 URLs abaixo -->
     <link rel="canonical" href="https://felipeyabiko.github.io/meu-portifolio/">
@@ -14,614 +14,578 @@
     <!-- Open Graph: é isso que gera o card de preview no WhatsApp e LinkedIn -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://felipeyabiko.github.io/meu-portifolio/">
-    <meta property="og:title" content="Felipe Yabiko Nogueira | Engenheiro de Software">
+    <meta property="og:title" content="Felipe Yabiko Nogueira — Engenheiro de Software">
     <meta property="og:description"
-        content="Backend, integração com LLMs e pipelines de dados. Do banco de dados à interface.">
+        content="Dados, automação e IA aplicada. Servidores MCP, agentes, pipelines de dados e APIs — com teste, CI e medição.">
     <meta property="og:image" content="https://felipeyabiko.github.io/meu-portifolio/og.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <meta property="og:locale" content="pt_BR">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="theme-color" content="#0A0A0B">
+    <meta name="theme-color" content="#F1EFEA">
 
     <!-- Favicon inline: sem arquivo extra -->
     <link rel="icon"
-        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%230A0A0B'/><text x='50' y='70' font-family='Arial Black, sans-serif' font-size='58' font-weight='900' fill='%23FF5520' text-anchor='middle'>F</text></svg>">
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%230F0F0E'/><text x='50' y='69' font-family='Arial, sans-serif' font-size='56' font-weight='700' fill='%23F1EFEA' text-anchor='middle'>F</text><circle cx='76' cy='66' r='7' fill='%23FF4F17'/></svg>">
 
-    <!-- Fonts: Anton (display), Inter (texto), JetBrains Mono (metadados) -->
+    <!-- Geist (texto e títulos), Geist Mono (metadados) e Instrument Serif itálico (ênfase) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@1&display=swap"
         rel="stylesheet">
 
     <link rel="stylesheet" href="styles.css">
+
+    <!-- Antes da primeira pintura: liga as animações e escolhe o idioma, sem "piscar" -->
+    <script>
+        (function () {
+            var d = document.documentElement;
+            d.classList.add('js');
+            var lang = null;
+            try { lang = localStorage.getItem('lang'); } catch (e) { }
+            if (!lang) lang = (navigator.language || 'pt').toLowerCase().indexOf('pt') === 0 ? 'pt' : 'en';
+            d.setAttribute('data-lang', lang);
+            if (lang === 'en') d.lang = 'en';
+            try { if (sessionStorage.getItem('visto')) d.classList.add('ja-visto'); } catch (e) { }
+        })();
+    </script>
 </head>
 
-<body class="loading">
+<body>
+    <a href="#conteudo" class="skip-link" data-i18n="skip">Pular para o conteúdo</a>
 
-    <!-- Custom Cursor (só aparece em pointer: fine) -->
-    <div class="cursor-dot"></div>
-    <div class="cursor-follower"></div>
-
-    <div class="noise-overlay"></div>
-    <div class="scroll-progress" id="scroll-progress"></div>
-
-    <!-- Colunas de referência ao fundo -->
-    <div class="grid-overlay" aria-hidden="true">
-        <span></span><span></span><span></span><span></span>
+    <!-- Abertura: só na primeira visita da sessão -->
+    <div class="loader" aria-hidden="true">
+        <div class="loader__inner">
+            <span class="loader__name">Felipe Yabiko</span>
+            <span class="loader__count"><span id="loader-num">00</span></span>
+        </div>
+        <div class="loader__bar"><span></span></div>
     </div>
 
+    <div class="cursor" aria-hidden="true"><span class="cursor__label"></span></div>
+
     <!-- ==========================================================
-         Header
+         Cabeçalho
          ========================================================== -->
     <header class="header">
-        <div class="header__inner">
-            <a href="#" class="logo magnetic" data-strength="20">F.Y<span class="accent-dot">.</span></a>
+        <a href="#topo" class="header__logo" aria-label="Felipe Yabiko — início">
+            <span class="header__logo-mark">FY</span>
+            <span class="header__logo-text">Felipe Yabiko</span>
+        </a>
 
-            <nav class="nav" id="nav">
-                <ul class="nav__list">
-                    <li><a href="#servicos" class="nav__link hover-reveal" data-i18n="navServices">Atuação</a></li>
-                    <li><a href="#projetos" class="nav__link hover-reveal" data-i18n="navProjects">Projetos</a></li>
-                    <li><a href="#experiencia" class="nav__link hover-reveal" data-i18n="navExperience">Experiência</a>
-                    </li>
-                    <li><a href="#contato" class="btn --cta magnetic" data-strength="30"><span class="btn-bg"></span>
-                            <span class="btn-text" data-i18n="navContact">Contato</span></a></li>
-                    <li><button class="lang-toggle" id="lang-toggle" aria-label="Switch language">EN</button></li>
-                </ul>
-            </nav>
+        <nav class="header__nav" aria-label="Principal">
+            <a href="#trabalho" class="link-roll"><span data-i18n="navWork">Trabalho</span></a>
+            <a href="#sobre" class="link-roll"><span data-i18n="navAbout">Sobre</span></a>
+            <a href="#trajetoria" class="link-roll"><span data-i18n="navPath">Trajetória</span></a>
+            <a href="#contato" class="link-roll"><span data-i18n="navContact">Contato</span></a>
+        </nav>
 
-            <button class="menu-toggle" id="menu-toggle" aria-label="Abrir menu" aria-expanded="false"
-                aria-controls="nav">
-                <span class="hamburger"></span>
-            </button>
+        <div class="header__right">
+            <span class="header__clock mono"><span data-i18n="clockCity">Campinas</span> <span id="clock">--:--</span></span>
+            <button class="header__lang mono" id="lang-toggle" type="button" aria-label="Mudar idioma para inglês">EN</button>
+            <button class="header__menu" id="menu-toggle" type="button" aria-expanded="false" aria-controls="menu"
+                aria-label="Abrir menu"><span></span><span></span></button>
         </div>
     </header>
 
-    <main class="main-content">
+    <!-- Menu de tela cheia (celular) -->
+    <div class="menu" id="menu" hidden>
+        <nav class="menu__nav" aria-label="Menu">
+            <a href="#trabalho"><span class="mono">01</span> <span data-i18n="navWork">Trabalho</span></a>
+            <a href="#sobre"><span class="mono">02</span> <span data-i18n="navAbout">Sobre</span></a>
+            <a href="#trajetoria"><span class="mono">03</span> <span data-i18n="navPath">Trajetória</span></a>
+            <a href="#contato"><span class="mono">04</span> <span data-i18n="navContact">Contato</span></a>
+        </nav>
+        <div class="menu__foot mono">
+            <a href="mailto:fyabiko@gmail.com">fyabiko@gmail.com</a>
+            <a href="https://github.com/FelipeYabiko" target="_blank" rel="noopener">GitHub</a>
+            <a href="https://www.linkedin.com/in/felipe-yabiko-b57574379/" target="_blank" rel="noopener">LinkedIn</a>
+        </div>
+    </div>
+
+    <main id="conteudo">
 
         <!-- ==========================================================
              Hero
              ========================================================== -->
-        <section class="hero">
-            <div class="hero__container">
-                <div class="hero__content">
-                    <div class="hero__status">
-                        <span class="status-pill">
-                            <span class="status-pill__dot"></span>
-                            <span data-i18n="statusAvailable">Aberto a vagas de engenharia</span>
-                        </span>
-                    </div>
-
-                    <div class="reveal-mask">
-                        <p class="hero__subtitle" data-i18n="heroEyebrow">ENGENHARIA DE SOFTWARE <span class="accent">·</span> BACKEND <span class="accent">·</span> IA APLICADA</span> DADOS <span class="accent">·</span> AUTOMAÇÃO</p>
-                    </div>
-
-                    <h1 class="hero__title">
-                        <div class="reveal-mask"><span class="hero__title-line">Felipe Yabiko</span></div>
-                        <div class="reveal-mask"><span class="hero__title-line">Nogueira<span
-                                    class="accent-dot">.</span></span></div>
-                    </h1>
-
-                    <div class="reveal-mask">
-                        <p class="hero__description" data-i18n="heroDesc">Construo software de ponta a ponta: <span class="accent">APIs</span>, <span class="accent">integrações com LLMs</span> e pipelines de dados — do banco à interface. Hoje, estagiário de engenharia na Sotreq.</span>, <span
-                                class="accent">automações</span> e aplicações web — do ETL em Python à interface em
-                            Next.js.</p>
-                    </div>
-
-                    <div class="hero__actions">
-                        <a href="#projetos" class="btn --cta --large magnetic" data-strength="30">
-                            <span class="btn-bg"></span>
-                            <span class="btn-text" data-i18n="heroBtnPrimary">Ver projetos <svg width="16" height="16"
-                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                    stroke-linecap="round" stroke-linejoin="round">
-                                    <line x1="5" y1="12" x2="19" y2="12"></line>
-                                    <polyline points="12 5 19 12 12 19"></polyline>
-                                </svg></span>
-                        </a>
-                        <a href="#contato" class="btn --ghost --large magnetic" data-strength="30">
-                            <span class="btn-text" data-i18n="heroBtnSecondary">Falar comigo</span>
-                        </a>
-                    </div>
-
-                    <div class="hero__stats">
-                        <div>
-                            <span class="hero__stat-num">03</span>
-                            <span class="hero__stat-label" data-i18n="stat1">Produtos no ar</span>
-                        </div>
-                        <div>
-                            <span class="hero__stat-num">06</span>
-                            <span class="hero__stat-label" data-i18n="stat2">Pessoas que liderei</span>
-                        </div>
-                        <div>
-                            <span class="hero__stat-num">B2</span>
-                            <span class="hero__stat-label" data-i18n="stat3">Inglês certificado</span>
-                        </div>
-                        <div>
-                            <span class="hero__stat-num">2027</span>
-                            <span class="hero__stat-label" data-i18n="stat4">Formatura prevista</span>
-                        </div>
-                    </div>
-                </div>
+        <section class="hero" id="topo">
+            <div class="hero__top">
+                <p class="hero__meta mono">
+                    <span class="status"><span class="status__dot"></span><span data-i18n="status">Aberto a vagas de engenharia</span></span>
+                    <span data-i18n="heroRole">Engenharia de software · Dados · Automação · IA</span>
+                </p>
+                <p class="hero__lede" data-i18n="heroLede">Construo software que resolve problema real: <em>agentes e servidores MCP</em>, pipelines de dados e APIs — com teste, CI e medição antes de afirmar.</p>
             </div>
-            <div class="scroll-indicator">
-                <span class="scroll-text">SCROLL</span>
-                <div class="mouse"></div>
+
+            <!-- Selic desde 2010, lida do meu pipeline indicadores-br -->
+            <figure class="hero__chart">
+                <canvas id="selic-chart" aria-hidden="true"></canvas>
+                <div class="chart-tip mono" id="chart-tip" aria-hidden="true"></div>
+                <figcaption class="hero__live">
+                    <span class="hero__live-tag mono"><span class="live-dot"></span><span data-i18n="liveTag">Ao vivo do meu pipeline</span></span>
+                    <dl class="hero__ticker">
+                        <div><dt data-i18n="tSelic">Selic</dt><dd id="v-selic">13,75%</dd></div>
+                        <div><dt data-i18n="tIpca">IPCA 12m</dt><dd id="v-ipca">4,58%</dd></div>
+                        <div><dt data-i18n="tDolar">Dólar</dt><dd id="v-dolar">R$ 5,03</dd></div>
+                    </dl>
+                    <span class="hero__live-src mono"><span data-i18n="liveSrc">Banco Central, coletado todo dia útil pelo GitHub Actions</span> · <a href="https://github.com/FelipeYabiko/indicadores-br" target="_blank" rel="noopener">indicadores-br</a> · <span id="v-data">22/10/2026</span></span>
+                </figcaption>
+            </figure>
+
+            <h1 class="hero__name" aria-label="Felipe Yabiko Nogueira">
+                <span class="hero__name-line" aria-hidden="true">Felipe</span>
+                <span class="hero__name-line" aria-hidden="true">Yabiko</span>
+            </h1>
+        </section>
+
+        <!-- ==========================================================
+             Sobre
+             ========================================================== -->
+        <section class="about" id="sobre">
+            <div class="section-label mono"><span>(01)</span><span data-i18n="lblAbout">Sobre</span></div>
+            <p class="about__statement" data-split data-i18n="aboutText">Sou estagiário de engenharia de software na Sotreq e me formo em Engenharia de Software pela PUC-Campinas em 2027. Gosto de problema com dado de verdade — atas do Banco Central, extratos bancários, uma consulta de fonoaudiologia, o catálogo do mercadinho do bairro — e de colocar IA só onde ela ajuda.</p>
+
+            <dl class="about__facts">
+                <div class="fact"><dt class="fact__num" data-count="3">03</dt><dd data-i18n="f1">Produtos no ar</dd></div>
+                <div class="fact"><dt class="fact__num" data-count="6">06</dt><dd data-i18n="f2">Pessoas que liderei</dd></div>
+                <div class="fact"><dt class="fact__num">B2</dt><dd data-i18n="f3">Inglês certificado</dd></div>
+                <div class="fact"><dt class="fact__num" data-count="2027">2027</dt><dd data-i18n="f4">Formatura</dd></div>
+            </dl>
+
+            <div class="caps">
+                <h2 class="caps__title" data-i18n="capsTitle">O que <em>eu faço</em></h2>
+                <ol class="caps__list">
+                    <li class="cap">
+                        <span class="cap__num mono">A</span>
+                        <h3 class="cap__name" data-i18n="c1Name">IA e LLMs</h3>
+                        <p class="cap__desc" data-i18n="c1Desc">Agentes com tool use, RAG com citações, extração estruturada, evals e servidores MCP que ligam dados a assistentes de IA.</p>
+                    </li>
+                    <li class="cap">
+                        <span class="cap__num mono">B</span>
+                        <h3 class="cap__name" data-i18n="c2Name">Dados</h3>
+                        <p class="cap__desc" data-i18n="c2Desc">Pipelines de ETL, séries temporais com pandas, dashboards e machine learning com scikit-learn.</p>
+                    </li>
+                    <li class="cap">
+                        <span class="cap__num mono">C</span>
+                        <h3 class="cap__name" data-i18n="c3Name">Automação</h3>
+                        <p class="cap__desc" data-i18n="c3Desc">Robôs em Playwright, workflows agendados no GitHub Actions e processamento de documentos.</p>
+                    </li>
+                    <li class="cap">
+                        <span class="cap__num mono">D</span>
+                        <h3 class="cap__name" data-i18n="c4Name">Produto</h3>
+                        <p class="cap__desc" data-i18n="c4Desc">Apps web e APIs em TypeScript e Python, do requisito ao deploy, com CI e testes.</p>
+                    </li>
+                </ol>
             </div>
         </section>
 
         <!-- ==========================================================
-             Marquee — stack atual
+             Trabalho selecionado
              ========================================================== -->
-        <div class="marquee-container">
-            <div class="marquee-content">
-                <span>TYPESCRIPT</span><span class="separator">◆</span>
-                <span>PYTHON</span><span class="separator">◆</span>
-                <span>FASTAPI</span><span class="separator">◆</span>
-                <span>NEXT.JS</span><span class="separator">◆</span>
-                <span>REACT</span><span class="separator">◆</span>
-                <span>POSTGRESQL</span><span class="separator">◆</span>
-                <span>FIREBASE</span><span class="separator">◆</span>
-                <span>LLM APIs</span><span class="separator">◆</span>
-                <span>PANDAS</span><span class="separator">◆</span>
-                <span>PLAYWRIGHT</span><span class="separator">◆</span>
-                <span>TYPESCRIPT</span><span class="separator">◆</span>
-                <span>PYTHON</span><span class="separator">◆</span>
-                <span>FASTAPI</span><span class="separator">◆</span>
-                <span>NEXT.JS</span><span class="separator">◆</span>
-                <span>REACT</span><span class="separator">◆</span>
-                <span>POSTGRESQL</span><span class="separator">◆</span>
-                <span>FIREBASE</span><span class="separator">◆</span>
-                <span>LLM APIs</span><span class="separator">◆</span>
-                <span>PANDAS</span><span class="separator">◆</span>
-                <span>PLAYWRIGHT</span><span class="separator">◆</span>
+        <section class="work" id="trabalho">
+            <div class="work__head">
+                <div class="section-label mono"><span>(02)</span><span data-i18n="lblWork">Trabalho selecionado</span></div>
+                <h2 class="big-title"><span data-i18n="workTitle">Trabalho <em>selecionado</em></span> <sup class="mono">06</sup></h2>
             </div>
-        </div>
 
-        <!-- ==========================================================
-             Serviços
-             ========================================================== -->
-        <section id="servicos" class="services section-padding">
-            <div class="container">
-                <div class="section-header">
-                    <div class="section-index">
-                        <span class="section-index__num">[01]</span>
-                        <span class="section-index__name" data-i18n="idxServices">Atuação</span>
+            <div class="cases">
+
+                <!-- 01 — copom-mcp -->
+                <article class="case" data-tone="dark" style="--case-bg:#141413; --case-fg:#F1EFEA; --case-muted:#A3A19B; --case-line:rgba(241,239,234,.14);">
+                    <div class="case__info">
+                        <div class="case__kicker mono"><span>01</span><span data-i18n="k1">Servidor MCP · IA e RAG · 2026</span></div>
+                        <h3 class="case__title">copom-mcp</h3>
+                        <p class="case__lede" data-i18n="p1Lede">Dá a assistentes de IA — Claude, Cursor, VS Code — acesso às 261 atas do Copom desde 1998. Cada resposta cita o parágrafo e a reunião de onde veio a afirmação.</p>
+                        <ul class="case__points">
+                            <li data-i18n="p1a">Busca híbrida: BM25 próprio e embeddings locais, combinados por Reciprocal Rank Fusion</li>
+                            <li data-i18n="p1b">13 mil parágrafos extraídos de HTML e PDF, em 28 anos de formatos diferentes</li>
+                            <li data-i18n="p1c">Eval com 25 perguntas e gabarito rodando no CI, que falha se a qualidade cair</li>
+                        </ul>
+                        <ul class="tags mono"><li>Python</li><li>MCP</li><li>Claude API</li><li>RAG</li><li>pytest</li></ul>
+                        <div class="case__links">
+                            <a href="https://github.com/FelipeYabiko/copom-mcp" target="_blank" rel="noopener" class="arrow-link"><span data-i18n="repo">Repositório</span></a>
+                        </div>
                     </div>
-                    <h2 class="section-title reveal-text" data-i18n="servicesTitle">Onde eu <br /> <span class="accent">atuo</span></span></h2>
-                    <p class="section-subtitle reveal-fade" data-i18n="servicesSub">Três frentes em que já coloquei sistema no ar — do levantamento de requisitos ao deploy, com teste automatizado no caminho.</p>
-                </div>
+                    <div class="case__media">
+                        <div class="term" role="img" aria-label="Saída real das ferramentas listar_reunioes e buscar_atas do copom-mcp">
+                            <div class="term__bar"><i></i><i></i><i></i><span>copom-mcp · Claude Code</span></div>
+<pre class="term__body"><code><span class="t-in">› listar_reunioes(desde="2026")</span>
+<span class="t-line">276ª  2026-01-28  15.00% → 15.00%  manutenção</span>
+<span class="t-line">277ª  2026-03-18  15.00% → 14.75%  corte (-25 pb)</span>
+<span class="t-line">278ª  2026-04-29  14.75% → 14.50%  corte (-25 pb)</span>
+<span class="t-line">279ª  2026-06-17  14.50% → 14.25%  corte (-25 pb)</span>
+<span class="t-line">280ª  2026-08-05  14.25% → 14.00%  corte (-25 pb)</span>
+<span class="t-line">281ª  2026-09-16  14.00% → 13.75%  corte (-25 pb)</span>
 
-                <div class="services-grid">
-                    <article class="service-card reveal-fade">
-                        <span class="service-card__label" data-i18n="s1Label">Backend</span>
-                        <div>
-                            <h3 class="service-card__title" data-i18n="s1Title">APIs e regras de negócio</h3>
-                            <p class="service-card__desc" data-i18n="s1Desc">APIs REST em FastAPI e Next.js, com a regra de negócio isolada em camadas de serviço que dá para testar sem banco nem rede. Banco relacional com migrações e testes automatizados desde o primeiro endpoint.</p>
+<span class="t-in">› buscar_atas("choque de tarifas", desde="2025")</span>
+<span class="t-line"><b>271ª (2025-06-18) §6</b> O cenário externo mostra-se</span>
+<span class="t-line">adverso e particularmente incerto. O Comitê avaliou</span>
+<span class="t-line">que houve alguns desenvolvimentos [...] como a</span>
+<span class="t-line">reversão parcial das tarifas, mas...</span>
+
+<span class="t-line t-dim">hit@5 0,76 · MRR@10 0,63 · 25 perguntas</span><span class="t-caret"></span></code></pre>
                         </div>
-                        <ul class="service-card__list">
-                            <li data-i18n="s1i1">REST e camadas de serviço</li>
-                            <li data-i18n="s1i2">SQL, SQLAlchemy e Postgres</li>
-                            <li data-i18n="s1i3">Testes automatizados com pytest</li>
-                        </ul>
-                    </article>
-
-                    <article class="service-card reveal-fade">
-                        <span class="service-card__label" data-i18n="s2Label">IA aplicada</span>
-                        <div>
-                            <h3 class="service-card__title" data-i18n="s2Title">LLMs dentro do produto</h3>
-                            <p class="service-card__desc" data-i18n="s2Desc">Integração de LLMs com saída estruturada e tool calling, desenhada para não confiar no modelo onde o erro custa caro: no Mercado, a IA escolhe os itens e quem calcula o preço é o servidor.</p>
-                        </div>
-                        <ul class="service-card__list">
-                            <li data-i18n="s2i1">Tool calling e JSON Schema</li>
-                            <li data-i18n="s2i2">Guardrails contra alucinação</li>
-                            <li data-i18n="s2i3">APIs do Claude e do Gemini</li>
-                        </ul>
-                    </article>
-
-                    <article class="service-card reveal-fade">
-                        <span class="service-card__label" data-i18n="s3Label">Dados e automação</span>
-                        <div>
-                            <h3 class="service-card__title" data-i18n="s3Title">Pipelines e robôs</h3>
-                            <p class="service-card__desc" data-i18n="s3Desc">Pipelines de ETL em Python e robôs em Playwright que tiram a rotina manual do time comercial e alimentam os painéis de indicadores que ele abre todo dia.</p>
-                        </div>
-                        <ul class="service-card__list">
-                            <li data-i18n="s3i1">ETL com pandas</li>
-                            <li data-i18n="s3i2">Automação com Playwright</li>
-                            <li data-i18n="s3i3">Painéis de indicadores</li>
-                        </ul>
-                    </article>
-                </div>
-            </div>
-        </section>
-
-        <!-- ==========================================================
-             Projetos
-             ========================================================== -->
-        <section id="projetos" class="projects section-padding">
-            <div class="container">
-                <div class="section-header">
-                    <div class="section-index">
-                        <span class="section-index__num">[02]</span>
-                        <span class="section-index__name" data-i18n="idxProjects">Trabalho selecionado</span>
                     </div>
-                    <h2 class="section-title reveal-text" data-i18n="projectsTitle">Projetos <br /> <span
-                            class="accent">selecionados</span></h2>
-                    <p class="section-subtitle reveal-fade" data-i18n="projectsSub">Uma seleção do que construí — do
-                        levantamento de requisitos ao deploy.</p>
-                </div>
+                </article>
 
-                <div class="project-showcase">
-
-                    <!-- Projeto 1 — FONAR -->
-                    <article class="project-row">
-                        <div class="project-row__info">
-                            <span class="project-row__number">01</span>
-                            <h3 class="project-row__title">FONAR</h3>
-                            <div class="project-tags">
-                                <span class="tag">Flutter</span>
-                                <span class="tag">Dart</span>
-                                <span class="tag">FastAPI</span>
-                                <span class="tag">Firebase</span>
-                                <span class="tag">Cloud Run</span>
-                            </div>
-                            <p class="project-row__desc" data-i18n="p2Desc">Plataforma de avaliação vocal clínica para fonoaudiólogos, nosso TCC. O app em Flutter, para Android e Windows, guia a consulta inteira: consentimento que bloqueia a gravação, aferição do ruído da sala, gravação em WAV conferida, fila de envio que funciona sem internet, escala CAPE-V, evolução do paciente e laudo em PDF. As medidas acústicas vêm de uma API em FastAPI no Cloud Run, com o motor do Praat. Desenvolvi a maior parte do app, do login ao laudo.</p>
-                            <a href="https://github.com/fonar-project/fonar-app" target="_blank" rel="noopener"
-                                class="view-project-link" data-i18n="viewRepo">Ver repositório <svg width="14" height="14"
-                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <line x1="5" y1="12" x2="19" y2="12"></line>
-                                    <polyline points="12 5 19 12 12 19"></polyline>
-                                </svg></a>
-                            <p class="project-row__meta" data-i18n="p2Meta">TCC · Maior parte do app · Em desenvolvimento</p>
+                <!-- 02 — FONAR -->
+                <article class="case" style="--case-bg:#E9E3F2; --case-fg:#1E1028; --case-muted:#5B4E66; --case-line:rgba(30,16,40,.14);">
+                    <div class="case__info">
+                        <div class="case__kicker mono"><span>02</span><span data-i18n="k2">TCC · Saúde · Em desenvolvimento</span></div>
+                        <h3 class="case__title">FONAR</h3>
+                        <p class="case__lede" data-i18n="p2Lede">Plataforma de avaliação vocal clínica para fonoaudiólogos. O app em Flutter, para Android e Windows, guia a consulta inteira — do consentimento ao laudo em PDF. Desenvolvi a maior parte dele.</p>
+                        <ul class="case__points">
+                            <li data-i18n="p2a">Consentimento que bloqueia a gravação no roteador do app, não um aviso que dá para ignorar</li>
+                            <li data-i18n="p2b">Aferição do ruído da sala, gravação em WAV conferida e fila de envio que funciona sem internet</li>
+                            <li data-i18n="p2c">Medidas acústicas numa API em FastAPI no Cloud Run, com o motor do Praat, e escala CAPE-V</li>
+                        </ul>
+                        <ul class="tags mono"><li>Flutter</li><li>Dart</li><li>FastAPI</li><li>Firebase</li><li>Cloud Run</li></ul>
+                        <div class="case__links">
+                            <a href="https://appfonar.web.app" target="_blank" rel="noopener" class="arrow-link"><span data-i18n="live">Ver ao vivo</span></a>
+                            <a href="https://github.com/fonar-project/fonar-app" target="_blank" rel="noopener" class="arrow-link"><span data-i18n="repo">Repositório</span></a>
                         </div>
-                        <div class="project-row__image-wrap magnetic-container">
-                            <div class="browser-bar"><i></i><i></i><i></i><span>FONAR · app no desktop</span></div>
-                            <div class="project-row__image placeholder-pattern"
-                                style="background: linear-gradient(135deg, #1A1A1D 0%, #2A1036 100%);">
-                                <video class="project-row__video" poster="img/fonar-poster.webp"
-                                    width="1200" height="900" muted loop playsinline preload="none"
+                    </div>
+                    <div class="case__media">
+                        <div class="frame">
+                            <div class="frame__bar"><i></i><i></i><i></i><span>appfonar.web.app</span></div>
+                            <div class="frame__screen">
+                                <video class="project-video" poster="img/fonar-poster.webp" width="1200" height="900" muted loop playsinline preload="none"
                                     aria-label="Demonstração do FONAR: consentimento, gravação, resultado da análise, CAPE-V e laudo">
                                     <source data-src="img/fonar.mp4" type='video/mp4; codecs="avc1.640032"'>
                                     <source data-src="img/fonar.webm" type='video/webm; codecs="vp9"'>
                                 </video>
-                                <div class="abstract-shape shape-2"></div>
                             </div>
                         </div>
-                    </article>
+                    </div>
+                </article>
 
-                    <!-- Projeto 2 — Mercado -->
-                    <article class="project-row reverse">
-                        <div class="project-row__info">
-                            <span class="project-row__number">02</span>
-                            <h3 class="project-row__title">Mercado</h3>
-                            <div class="project-tags">
-                                <span class="tag">Next.js</span>
-                                <span class="tag">TypeScript</span>
-                                <span class="tag">Claude API</span>
-                                <span class="tag">Firebase</span>
-                                <span class="tag">Stripe</span>
-                            </div>
-                            <p class="project-row__desc" data-i18n="p3Desc">Vitrine digital do comércio de bairro. Mercadinho, padaria e açougue publicam produto com foto e preço e colam o QR Code na porta. A lista inteligente usa a API do Claude com tool calling: a pessoa descreve o que precisa, o modelo escolhe os itens do catálogo e o servidor busca os preços reais e a loja mais barata — preço nunca sai do modelo. Pagamento com Stripe e app Android com Capacitor.</p>
-                            <a href="https://mercado-iota-ten.vercel.app/" target="_blank" rel="noopener"
-                                class="view-project-link" data-i18n="viewLive">Ver ao vivo <svg width="14" height="14"
-                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <line x1="5" y1="12" x2="19" y2="12"></line>
-                                    <polyline points="12 5 19 12 12 19"></polyline>
-                                </svg></a>
-                            <p class="project-row__meta" data-i18n="p3Meta">Produto próprio · Em desenvolvimento</p>
+                <!-- 03 — FinançasIA -->
+                <article class="case" style="--case-bg:#DDE6DF; --case-fg:#0F1F16; --case-muted:#4A5A50; --case-line:rgba(15,31,22,.14);">
+                    <div class="case__info">
+                        <div class="case__kicker mono"><span>03</span><span data-i18n="k3">IA aplicada · Backend · 2026</span></div>
+                        <h3 class="case__title">FinançasIA</h3>
+                        <p class="case__lede" data-i18n="p3Lede">App de finanças da família que importa extrato em PDF com LLM, categoriza os gastos e tem um assistente que responde perguntas e registra transações por function calling.</p>
+                        <ul class="case__points">
+                            <li data-i18n="p3a">Todo recurso de IA com prompt versionado, saída validada por schema, custo e latência rastreados e evals (P/R/F1 em 40 PDFs)</li>
+                            <li data-i18n="p3b">Microsserviço em Java 21 e Spring Boot consumindo eventos do RabbitMQ: outbox transacional, consumidor idempotente e DLQ</li>
+                            <li data-i18n="p3c">Defesa contra prompt injection com suíte adversarial; escrita só depois da confirmação de uma pessoa</li>
+                        </ul>
+                        <ul class="tags mono"><li>Python</li><li>FastAPI</li><li>Java</li><li>Spring Boot</li><li>RabbitMQ</li><li>Docker</li></ul>
+                        <div class="case__links">
+                            <a href="https://github.com/FelipeYabiko/FinancasAI" target="_blank" rel="noopener" class="arrow-link"><span data-i18n="repo">Repositório</span></a>
                         </div>
-                        <div class="project-row__image-wrap magnetic-container">
-                            <div class="browser-bar"><i></i><i></i><i></i><span>mercado-iota-ten.vercel.app</span></div>
-                            <div class="project-row__image placeholder-pattern"
-                                style="background: linear-gradient(135deg, #FF5520 0%, #512520 100%);">
-                                <video class="project-row__video" poster="img/mercado-poster.webp"
-                                    width="1200" height="900" muted loop playsinline preload="none"
+                    </div>
+                    <div class="case__media">
+                        <div class="frame">
+                            <div class="frame__bar"><i></i><i></i><i></i><span>FinançasIA · dashboard</span></div>
+                            <div class="frame__screen">
+                                <img src="img/financasia.webp" width="1440" height="1000" loading="lazy" alt="Dashboard do FinançasIA com saldo, faturas em aberto, receitas e despesas e gastos por categoria">
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- 04 — Mercado -->
+                <article class="case" style="--case-bg:#F6E3C7; --case-fg:#1F140A; --case-muted:#5E4A36; --case-line:rgba(31,20,10,.14);">
+                    <div class="case__info">
+                        <div class="case__kicker mono"><span>04</span><span data-i18n="k4">Produto próprio · Em desenvolvimento</span></div>
+                        <h3 class="case__title">Mercado</h3>
+                        <p class="case__lede" data-i18n="p4Lede">Vitrine digital do comércio de bairro. Mercadinho, padaria e açougue publicam produto com foto e preço e colam o QR Code na porta.</p>
+                        <ul class="case__points">
+                            <li data-i18n="p4a">Lista inteligente com a API do Claude e tool calling: o modelo escolhe os itens, o servidor busca o preço real e a loja mais barata</li>
+                            <li data-i18n="p4b">Preço nunca sai do modelo — o guardrail fica onde o erro custa caro</li>
+                            <li data-i18n="p4c">Ofertas por localização, pagamento com Stripe e app Android com Capacitor</li>
+                        </ul>
+                        <ul class="tags mono"><li>Next.js</li><li>TypeScript</li><li>Claude API</li><li>Firebase</li><li>Stripe</li></ul>
+                        <div class="case__links">
+                            <a href="https://mercado-iota-ten.vercel.app/" target="_blank" rel="noopener" class="arrow-link"><span data-i18n="live">Ver ao vivo</span></a>
+                        </div>
+                    </div>
+                    <div class="case__media">
+                        <div class="frame">
+                            <div class="frame__bar"><i></i><i></i><i></i><span>mercado-iota-ten.vercel.app</span></div>
+                            <div class="frame__screen">
+                                <video class="project-video" poster="img/mercado-poster.webp" width="1200" height="900" muted loop playsinline preload="none"
                                     aria-label="Demonstração do Mercado: vitrine, ofertas por localização, produto e loja">
                                     <source data-src="img/mercado.mp4" type='video/mp4; codecs="avc1.640032"'>
                                     <source data-src="img/mercado.webm" type='video/webm; codecs="vp9"'>
                                 </video>
-                                <div class="abstract-shape shape-3"></div>
                             </div>
                         </div>
-                    </article>
+                    </div>
+                </article>
 
-                    <!-- Projeto 3 — Dep's -->
-                    <article class="project-row">
-                        <div class="project-row__info">
-                            <span class="project-row__number">03</span>
-                            <h3 class="project-row__title">Dep's</h3>
-                            <div class="project-tags">
-                                <span class="tag">Three.js</span>
-                                <span class="tag">GSAP</span>
-                                <span class="tag">Supabase</span>
-                                <span class="tag">Vercel</span>
-                            </div>
-                            <p class="project-row__desc" data-i18n="p1Desc">Site e catálogo das três casas da marca
-                                Dep's, na Praia dos Namorados. Home com cenas 3D em Three.js, catálogo por casa e sacola
-                                que fecha o pedido direto no WhatsApp. Na mesa do restaurante, o cliente lê o QR Code e
-                                abre o cardápio; o dono cadastra produto, monta a promoção do dia e gera o QR num painel
-                                próprio, com Supabase e políticas de acesso por trás.</p>
-                            <a href="https://site-deps.vercel.app/" target="_blank" rel="noopener"
-                                class="view-project-link" data-i18n="viewLive">Ver ao vivo <svg width="14" height="14"
-                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <line x1="5" y1="12" x2="19" y2="12"></line>
-                                    <polyline points="12 5 19 12 12 19"></polyline>
-                                </svg></a>
-                            <p class="project-row__meta" data-i18n="p1Meta">Projeto para cliente · No ar</p>
+                <!-- 05 — Dep's -->
+                <article class="case" style="--case-bg:#F3EDE2; --case-fg:#141210; --case-muted:#5A534A; --case-line:rgba(20,18,16,.14);">
+                    <div class="case__info">
+                        <div class="case__kicker mono"><span>05</span><span data-i18n="k5">Projeto para cliente · No ar</span></div>
+                        <h3 class="case__title">Dep's</h3>
+                        <p class="case__lede" data-i18n="p5Lede">Site e catálogo das três casas da marca Dep's, na Praia dos Namorados: bebidas, rotisseria e petshop.</p>
+                        <ul class="case__points">
+                            <li data-i18n="p5a">Home com cenas 3D em Three.js e GSAP, e catálogo com a identidade de cada casa</li>
+                            <li data-i18n="p5b">Sacola que fecha o pedido direto no WhatsApp; na mesa, o QR Code abre o cardápio</li>
+                            <li data-i18n="p5c">Painel do dono para produtos, promoção do dia e QR Code, com Supabase e políticas de acesso</li>
+                        </ul>
+                        <ul class="tags mono"><li>Three.js</li><li>GSAP</li><li>Supabase</li><li>Vercel</li></ul>
+                        <div class="case__links">
+                            <a href="https://site-deps.vercel.app/" target="_blank" rel="noopener" class="arrow-link"><span data-i18n="live">Ver ao vivo</span></a>
                         </div>
-                        <div class="project-row__image-wrap magnetic-container">
-                            <div class="browser-bar"><i></i><i></i><i></i><span>site-deps.vercel.app</span></div>
-                            <div class="project-row__image placeholder-pattern"
-                                style="background: linear-gradient(135deg, #1A1A1D 0%, #2A2318 100%);">
-                                <video class="project-row__video" poster="img/deps-poster.webp"
-                                    width="1200" height="900" muted loop playsinline preload="none"
+                    </div>
+                    <div class="case__media">
+                        <div class="frame">
+                            <div class="frame__bar"><i></i><i></i><i></i><span>site-deps.vercel.app</span></div>
+                            <div class="frame__screen">
+                                <video class="project-video" poster="img/deps-poster.webp" width="1200" height="900" muted loop playsinline preload="none"
                                     aria-label="Demonstração do Dep's: home com cena 3D, catálogo das três casas e cardápio da mesa no celular">
                                     <source data-src="img/deps.mp4" type='video/mp4; codecs="avc1.640032"'>
                                     <source data-src="img/deps.webm" type='video/webm; codecs="vp9"'>
                                 </video>
-                                <div class="abstract-shape shape-1"></div>
                             </div>
                         </div>
-                    </article>
+                    </div>
+                </article>
 
-                    <!-- Projeto 4 — Party Ranking -->
-                    <article class="project-row reverse">
-                        <div class="project-row__info">
-                            <span class="project-row__number">04</span>
-                            <h3 class="project-row__title">Party Ranking</h3>
-                            <div class="project-tags">
-                                <span class="tag">Next.js</span>
-                                <span class="tag">GitHub Actions</span>
-                                <span class="tag">FFmpeg</span>
-                            </div>
-                            <p class="project-row__desc" data-i18n="p4Desc">Ferramenta de votação e ranking de vídeos
-                                com geração automática do vídeo final. O pipeline roda em GitHub Actions, baixa e
-                                processa cada clipe e monta a compilação do resultado sem intervenção manual.</p>
-                            <a href="https://partyrank-vercel.vercel.app" target="_blank" rel="noopener"
-                                class="view-project-link" data-i18n="viewLive">Ver ao vivo <svg width="14" height="14"
-                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <line x1="5" y1="12" x2="19" y2="12"></line>
-                                    <polyline points="12 5 19 12 12 19"></polyline>
-                                </svg></a>
-                            <p class="project-row__meta" data-i18n="p4Meta">Projeto pessoal · No ar</p>
+                <!-- 06 — Party Ranking -->
+                <article class="case" data-tone="dark" style="--case-bg:#0A0A0B; --case-fg:#F2F2F0; --case-muted:#A1A1AA; --case-line:rgba(242,242,240,.14);">
+                    <div class="case__info">
+                        <div class="case__kicker mono"><span>06</span><span data-i18n="k6">Projeto pessoal · No ar</span></div>
+                        <h3 class="case__title">Party Ranking</h3>
+                        <p class="case__lede" data-i18n="p6Lede">Votação de músicas entre amigos: cada um adiciona as suas, todo mundo dá nota de 0 a 10 e a média vira o pódio — que vira vídeo sozinho.</p>
+                        <ul class="case__points">
+                            <li data-i18n="p6a">Pipeline no GitHub Actions que baixa cada clipe, processa com FFmpeg e monta o vídeo do resultado</li>
+                            <li data-i18n="p6b">Tier lists com consenso do grupo e ordem embaralhada por jurado, para ninguém saber quem colocou o quê</li>
+                            <li data-i18n="p6c">Backend em Bun com Turso (libSQL) e front em Preact sem etapa de build</li>
+                        </ul>
+                        <ul class="tags mono"><li>Preact</li><li>Bun</li><li>Turso</li><li>GitHub Actions</li><li>FFmpeg</li></ul>
+                        <div class="case__links">
+                            <a href="https://partyrank-vercel.vercel.app" target="_blank" rel="noopener" class="arrow-link"><span data-i18n="live">Ver ao vivo</span></a>
                         </div>
-                        <div class="project-row__image-wrap magnetic-container">
-                            <div class="browser-bar"><i></i><i></i><i></i><span>partyrank-vercel.vercel.app</span></div>
-                            <div class="project-row__image placeholder-pattern"
-                                style="background: linear-gradient(135deg, #1A1A1D 0%, #301014 100%);">
-                                <video class="project-row__video" poster="img/party-ranking-poster.webp"
-                                    width="1200" height="900" muted loop playsinline preload="none"
+                    </div>
+                    <div class="case__media">
+                        <div class="frame">
+                            <div class="frame__bar"><i></i><i></i><i></i><span>partyrank-vercel.vercel.app</span></div>
+                            <div class="frame__screen">
+                                <video class="project-video" poster="img/party-ranking-poster.webp" width="1200" height="900" muted loop playsinline preload="none"
                                     aria-label="Demonstração do Party Ranking: landing, avaliação de uma música, pódio e tier list">
                                     <source data-src="img/party-ranking.mp4" type='video/mp4; codecs="avc1.640032"'>
                                     <source data-src="img/party-ranking.webm" type='video/webm; codecs="vp9"'>
                                 </video>
-                                <div class="abstract-shape shape-1"></div>
                             </div>
                         </div>
-                    </article>
-
-                </div>
-
-                <!-- Projetos acadêmicos / secundários -->
-                <div class="mini-projects">
-                    <h3 class="mini-projects__title reveal-fade" data-i18n="miniTitle">Outros projetos</h3>
-                    <!-- Repositórios privados: cards sem link.
-                         Para reativar um link quando o repo virar público, troque
-                         <article class="mini-card ..."> ... </article>
-                         por
-                         <a href="URL" target="_blank" rel="noopener" class="mini-card is-link ..."> ... </a> -->
-                    <div class="mini-grid">
-                        <article class="mini-card reveal-fade">
-                            <h4>Cancer Survival Predictor</h4>
-                            <p data-i18n="m1Desc">Classificação de sobrevivência de pacientes com dados clínicos. PCA
-                                para redução de dimensionalidade e GridSearchCV sobre KNN e MLP.</p>
-                            <div class="project-tags">
-                                <span class="tag">Python</span>
-                                <span class="tag">scikit-learn</span>
-                            </div>
-                        </article>
-                        <article class="mini-card reveal-fade">
-                            <h4>Locker Control System</h4>
-                            <p data-i18n="m2Desc">Sistema de acesso a armários com autenticação NFC via pulseira
-                                inteligente, com app de gestão.</p>
-                            <div class="project-tags">
-                                <span class="tag">Kotlin</span>
-                                <span class="tag">NFC</span>
-                            </div>
-                        </article>
-                        <article class="mini-card reveal-fade">
-                            <h4>Economic Echo</h4>
-                            <p data-i18n="m3Desc">App Android que agrega notícias econômicas e usa a API do Gemini para
-                                gerar resumos em tempo real.</p>
-                            <div class="project-tags">
-                                <span class="tag">Android</span>
-                                <span class="tag">Gemini API</span>
-                            </div>
-                        </article>
                     </div>
-                </div>
+                </article>
             </div>
         </section>
 
         <!-- ==========================================================
-             Experiência, formação e stack
+             Mais projetos (lista com prévia no hover)
+             Repositórios privados ficam sem link.
              ========================================================== -->
-        <section id="experiencia" class="education section-padding">
-            <div class="container">
-                <div class="section-header">
-                    <div class="section-index">
-                        <span class="section-index__num">[03]</span>
-                        <span class="section-index__name" data-i18n="idxExperience">Trajetória</span>
+        <section class="more">
+            <div class="more__head">
+                <div class="section-label mono"><span>(03)</span><span data-i18n="lblMore">Mais projetos</span></div>
+                <h2 class="mid-title" data-i18n="moreTitle">Também <em>construí</em></h2>
+            </div>
+
+            <ul class="index">
+                <li>
+                    <a class="index__row" href="https://github.com/FelipeYabiko/indicadores-br" target="_blank" rel="noopener" data-preview="img/indicadores.webp">
+                        <span class="index__name">indicadores-br</span>
+                        <span class="index__desc" data-i18n="m1">Selic, IPCA e dólar coletados todo dia útil pelo GitHub Actions, com dashboard em Streamlit</span>
+                        <span class="index__stack mono">Python · pandas · Streamlit</span>
+                        <span class="index__arrow" aria-hidden="true">↗</span>
+                    </a>
+                </li>
+                <li>
+                    <div class="index__row">
+                        <span class="index__name">AI-Agents</span>
+                        <span class="index__desc" data-i18n="m2">Agentes com tool use escritos do zero sobre a API do Claude, sem framework: finanças pessoais e pesquisa na web</span>
+                        <span class="index__stack mono">Python · Claude API · pytest</span>
+                        <span class="index__arrow mono" data-i18n="private">privado</span>
                     </div>
-                </div>
-
-                <div class="dual-grid">
-                    <div class="resume-col">
-                        <h2 class="section-title reveal-text" data-i18n="expTitle">Experiência <br /> <span
-                                class="accent">e formação</span></h2>
-
-                        <div class="timeline" style="margin-top: var(--space-lg);">
-                            <div class="timeline-item reveal-fade">
-                                <div class="timeline-dot"></div>
-                                <span class="timeline-date" data-i18n="exp1Date">Mar 2026 — Atual</span>
-                                <h3 class="timeline-title" data-i18n="exp1Title">Estagiário de Engenharia de Software
-                                </h3>
-                                <p class="timeline-subtitle">Sotreq S/A — Sumaré, SP</p>
-                                <p class="timeline-desc" data-i18n="exp1Desc">Desenvolvimento de pipelines de ETL em
-                                    Python e painéis de indicadores para a área comercial. Automação de rotinas de
-                                    coleta de dados com Playwright e pandas.</p>
-                            </div>
-
-                            <div class="timeline-item reveal-fade">
-                                <div class="timeline-dot"></div>
-                                <span class="timeline-date">Ago 2023 — Jul 2027</span>
-                                <h3 class="timeline-title" data-i18n="edu1Title">Bacharelado em Engenharia de Software
-                                </h3>
-                                <p class="timeline-subtitle">PUC-Campinas — Campinas, SP</p>
-                                <p class="timeline-desc" data-i18n="edu1Desc">Formação com projetos integradores
-                                    semestrais em desenvolvimento full-stack, machine learning e arquitetura de
-                                    software.</p>
-                            </div>
-
-                            <div class="timeline-item reveal-fade">
-                                <div class="timeline-dot"></div>
-                                <span class="timeline-date">2019 — 2021</span>
-                                <h3 class="timeline-title" data-i18n="edu2Title">Técnico em Informática</h3>
-                                <p class="timeline-subtitle">CEMEP — Paulínia, SP</p>
-                                <p class="timeline-desc" data-i18n="edu2Desc">Fundamentos de programação, lógica e
-                                    integração de sistemas.</p>
-                            </div>
-
-                            <div class="timeline-item reveal-fade">
-                                <div class="timeline-dot"></div>
-                                <span class="timeline-date" data-i18n="certDate">Certificação</span>
-                                <h3 class="timeline-title" data-i18n="certTitle">Inglês — Nível B2</h3>
-                                <p class="timeline-subtitle">Voxy</p>
-                            </div>
-                        </div>
+                </li>
+                <li>
+                    <a class="index__row" href="https://github.com/FelipeYabiko/links-api" target="_blank" rel="noopener">
+                        <span class="index__name">links-api</span>
+                        <span class="index__desc" data-i18n="m3">API de encurtador de URLs com JWT, estatística de cliques, rate limiting e OpenAPI</span>
+                        <span class="index__stack mono">TypeScript · Fastify · SQLite · Docker</span>
+                        <span class="index__arrow" aria-hidden="true">↗</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="index__row" href="https://github.com/FelipeYabiko/kanban-board" target="_blank" rel="noopener" data-preview="img/kanban.webp">
+                        <span class="index__name">kanban-board</span>
+                        <span class="index__desc" data-i18n="m4">Kanban com arrastar e soltar acessível, inclusive pelo teclado, e testes de ponta a ponta</span>
+                        <span class="index__stack mono">Next.js · React · Playwright</span>
+                        <span class="index__arrow" aria-hidden="true">↗</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="index__row" href="https://pega-a-visao.vercel.app/" target="_blank" rel="noopener">
+                        <span class="index__name">Pega a Visão</span>
+                        <span class="index__desc" data-i18n="m5">Plataforma multi-tenant que conecta óticas e clínicas oftalmológicas</span>
+                        <span class="index__stack mono">Next.js · TypeScript · Firebase</span>
+                        <span class="index__arrow" aria-hidden="true">↗</span>
+                    </a>
+                </li>
+                <li>
+                    <div class="index__row">
+                        <span class="index__name">Economic Echo</span>
+                        <span class="index__desc" data-i18n="m6">App Android que resume notícias econômicas com a API do Gemini</span>
+                        <span class="index__stack mono">Kotlin · Gemini API</span>
+                        <span class="index__arrow mono" data-i18n="private">privado</span>
                     </div>
+                </li>
+                <li>
+                    <div class="index__row">
+                        <span class="index__name">Cancer Survival Predictor</span>
+                        <span class="index__desc" data-i18n="m7">Classificação de sobrevivência com dados clínicos: PCA e GridSearchCV sobre KNN e MLP</span>
+                        <span class="index__stack mono">Python · scikit-learn</span>
+                        <span class="index__arrow mono" data-i18n="private">privado</span>
+                    </div>
+                </li>
+                <li>
+                    <div class="index__row">
+                        <span class="index__name">Locker Control System</span>
+                        <span class="index__desc" data-i18n="m8">Acesso a armários com NFC por pulseira inteligente, com app de gestão</span>
+                        <span class="index__stack mono">Kotlin · NFC</span>
+                        <span class="index__arrow mono" data-i18n="private">privado</span>
+                    </div>
+                </li>
+            </ul>
+            <div class="preview" aria-hidden="true"><img alt=""></div>
+        </section>
 
-                    <div class="resume-col">
-                        <h2 class="section-title reveal-text" data-i18n="stackTitle">Stack <br /> <span
-                                class="accent">técnica</span></h2>
+        <!-- ==========================================================
+             Como eu trabalho
+             ========================================================== -->
+        <section class="method" data-tone="dark">
+            <div class="section-label mono"><span>(04)</span><span data-i18n="lblMethod">Como eu trabalho</span></div>
+            <ol class="method__list">
+                <li class="principle">
+                    <span class="principle__num mono">01</span>
+                    <h3 class="principle__title" data-i18n="w1Title">Teste e CI em <em>todo</em> projeto</h3>
+                    <p class="principle__desc" data-i18n="w1Desc">Unitário, integração e ponta a ponta — pytest, Vitest, JUnit e Playwright — rodando em cada push.</p>
+                </li>
+                <li class="principle">
+                    <span class="principle__num mono">02</span>
+                    <h3 class="principle__title" data-i18n="w2Title">Medir antes de <em>afirmar</em></h3>
+                    <p class="principle__desc" data-i18n="w2Desc">Evals para busca e para saída de LLM, com gabarito, e custo de cada chamada de API rastreado.</p>
+                </li>
+                <li class="principle">
+                    <span class="principle__num mono">03</span>
+                    <h3 class="principle__title" data-i18n="w3Title">Desenvolvimento com <em>IA</em></h3>
+                    <p class="principle__desc" data-i18n="w3Desc">Construo com o Claude Code. Os repositórios vêm com CLAUDE.md, hooks, skills e agentes revisores, para o fluxo ser reproduzível.</p>
+                </li>
+                <li class="principle">
+                    <span class="principle__num mono">04</span>
+                    <h3 class="principle__title" data-i18n="w4Title">Cada projeto <em>ensina</em></h3>
+                    <p class="principle__desc" data-i18n="w4Desc">Todo repositório tem um guia de estudo (docs/GUIA-DE-ESTUDO.md) que explica os conceitos por trás do código.</p>
+                </li>
+            </ol>
+        </section>
 
-                        <div class="skills-block reveal-fade" style="margin-top: var(--space-lg);">
-                            <div class="skills-category">
-                                <h4 data-i18n="k1Title">Front-end</h4>
-                                <div class="skills-list">
-                                    <span class="skill-tag">TypeScript</span>
-                                    <span class="skill-tag">React</span>
-                                    <span class="skill-tag">Next.js</span>
-                                    <span class="skill-tag">Tailwind CSS</span>
-                                    <span class="skill-tag">shadcn/ui</span>
-                                    <span class="skill-tag">Three.js</span>
-                                    <span class="skill-tag">GSAP</span>
-                                </div>
-                            </div>
+        <!-- ==========================================================
+             Trajetória e stack
+             ========================================================== -->
+        <section class="path" id="trajetoria">
+            <div class="section-label mono"><span>(05)</span><span data-i18n="lblPath">Trajetória</span></div>
 
-                            <div class="skills-category">
-                                <h4 data-i18n="k2Title">Back-end e dados</h4>
-                                <div class="skills-list">
-                                    <span class="skill-tag">Python</span>
-                                    <span class="skill-tag">FastAPI</span>
-                                    <span class="skill-tag">Node.js</span>
-                                    <span class="skill-tag">SQL / PostgreSQL</span>
-                                    <span class="skill-tag">SQLAlchemy</span>
-                                    <span class="skill-tag">Supabase</span>
-                                    <span class="skill-tag">Firebase / Firestore</span>
-                                    <span class="skill-tag">MongoDB</span>
-                                    <span class="skill-tag">Pandas</span>
-                                </div>
-                            </div>
-
-                            <div class="skills-category">
-                                <h4 data-i18n="k3Title">IA aplicada</h4>
-                                <div class="skills-list">
-                                    <span class="skill-tag">APIs de LLM (Claude, Gemini)</span>
-                                    <span class="skill-tag">Tool Calling</span>
-                                    <span class="skill-tag">Structured Output</span>
-                                    <span class="skill-tag">Prompt Engineering</span>
-                                    <span class="skill-tag">scikit-learn</span>
-                                    <span class="skill-tag">NLP</span>
-                                </div>
-                            </div>
-
-                            <div class="skills-category">
-                                <h4 data-i18n="k4Title">Qualidade, automação e infra</h4>
-                                <div class="skills-list">
-                                    <span class="skill-tag">pytest</span>
-                                    <span class="skill-tag">Playwright</span>
-                                    <span class="skill-tag">Git / GitHub</span>
-                                    <span class="skill-tag">GitHub Actions</span>
-                                    <span class="skill-tag">Vercel</span>
-                                </div>
-                            </div>
-
-                            <div class="skills-category">
-                                <h4 data-i18n="k5Title">Mobile</h4>
-                                <div class="skills-list">
-                                    <span class="skill-tag">Kotlin</span>
-                                    <span class="skill-tag">Android</span>
-                                    <span class="skill-tag">Capacitor</span>
-                                </div>
-                            </div>
-
-                            <div class="skills-category">
-                                <h4 data-i18n="k6Title">Estudando agora</h4>
-                                <div class="skills-list">
-                                    <span class="skill-tag --learning">Java</span>
-                                    <span class="skill-tag --learning">Spring Boot</span>
-                                    <span class="skill-tag --learning">Docker</span>
-                                    <span class="skill-tag --learning">JUnit 5</span>
-                                </div>
-                            </div>
+            <div class="path__grid">
+                <ol class="timeline">
+                    <li class="tl">
+                        <span class="tl__date mono" data-i18n="e1Date">Mar 2026 — hoje</span>
+                        <div>
+                            <h3 class="tl__role" data-i18n="e1Role">Estagiário de Engenharia de Software</h3>
+                            <p class="tl__org">Sotreq S/A — Sumaré, SP</p>
+                            <p class="tl__desc" data-i18n="e1Desc">Pipelines de ETL em Python e painéis de indicadores para a área comercial. Automação de rotinas de coleta de dados com Playwright e pandas.</p>
                         </div>
+                    </li>
+                    <li class="tl">
+                        <span class="tl__date mono" data-i18n="e2Date">Ago 2023 — Jul 2027</span>
+                        <div>
+                            <h3 class="tl__role" data-i18n="e2Role">Bacharelado em Engenharia de Software</h3>
+                            <p class="tl__org">PUC-Campinas — Campinas, SP</p>
+                            <p class="tl__desc" data-i18n="e2Desc">Projetos integradores semestrais em desenvolvimento full-stack, machine learning e arquitetura de software. TCC: o FONAR.</p>
+                        </div>
+                    </li>
+                    <li class="tl">
+                        <span class="tl__date mono">2019 — 2021</span>
+                        <div>
+                            <h3 class="tl__role" data-i18n="e3Role">Técnico em Informática</h3>
+                            <p class="tl__org">CEMEP — Paulínia, SP</p>
+                            <p class="tl__desc" data-i18n="e3Desc">Fundamentos de programação, lógica e integração de sistemas.</p>
+                        </div>
+                    </li>
+                    <li class="tl">
+                        <span class="tl__date mono" data-i18n="e4Date">Certificação</span>
+                        <div>
+                            <h3 class="tl__role" data-i18n="e4Role">Inglês — nível B2</h3>
+                            <p class="tl__org">Voxy</p>
+                        </div>
+                    </li>
+                </ol>
+
+                <div class="stack">
+                    <h2 class="stack__title" data-i18n="stackTitle">Stack</h2>
+                    <div class="stack__group">
+                        <h3 class="stack__name mono" data-i18n="g1">IA e dados</h3>
+                        <p>Python · pandas · NumPy · scikit-learn · Claude API · Gemini API · MCP · RAG · Streamlit</p>
+                    </div>
+                    <div class="stack__group">
+                        <h3 class="stack__name mono" data-i18n="g2">Backend</h3>
+                        <p>FastAPI · Node.js · Fastify · Java 21 · Spring Boot · PostgreSQL · SQLite · MongoDB · RabbitMQ</p>
+                    </div>
+                    <div class="stack__group">
+                        <h3 class="stack__name mono" data-i18n="g3">Web e mobile</h3>
+                        <p>TypeScript · React · Next.js · Tailwind CSS · Three.js · GSAP · Flutter · Kotlin</p>
+                    </div>
+                    <div class="stack__group">
+                        <h3 class="stack__name mono" data-i18n="g4">Qualidade e infra</h3>
+                        <p>pytest · Vitest · JUnit 5 · Playwright · Docker · GitHub Actions · Firebase · Supabase · Vercel</p>
                     </div>
                 </div>
             </div>
         </section>
-
     </main>
 
     <!-- ==========================================================
-         Footer / Contato
+         Contato
          ========================================================== -->
-    <footer id="contato" class="footer">
-        <div class="container footer__container">
-            <div class="footer__top">
-                <h2 class="footer__title reveal-text" data-i18n="footTitle">Vamos construir <br /> algo <span
-                        class="accent">que funciona.</span></h2>
-                <div class="footer__contact-info reveal-fade">
-                    <p class="footer__subtitle" data-i18n="footSub">Aberto a vagas de engenharia de software — backend e IA aplicada. Respondo em até um dia útil.</p>
-                    <a href="mailto:fyabiko@gmail.com" class="mega-link magnetic">fyabiko@gmail.com</a>
-                    <div class="footer__actions">
-                        <a href="mailto:fyabiko@gmail.com?subject=Vi%20seu%20portf%C3%B3lio" class="btn --cta magnetic"
-                            data-strength="30">
-                            <span class="btn-bg"></span>
-                            <span class="btn-text" data-i18n="ctaMail">Me mandar um e-mail</span>
-                        </a>
-                    </div>
-                </div>
-            </div>
+    <footer class="contact" id="contato">
+        <div class="section-label mono"><span>(06)</span><span data-i18n="lblContact">Contato</span></div>
+        <p class="contact__lede" data-i18n="contactLede">Aberto a vagas de engenharia de software — dados, automação e IA aplicada. Respondo em até um dia útil.</p>
 
-            <div class="footer__bottom reveal-fade">
-                <div class="footer__socials">
-                    <a href="https://github.com/FelipeYabiko" target="_blank" rel="noopener"
-                        class="social-link">GitHub</a>
-                    <a href="https://www.linkedin.com/in/felipe-yabiko-b57574379/" target="_blank" rel="noopener"
-                        class="social-link">LinkedIn</a>
-                </div>
-                <div class="footer__credits">
-                    <p>&copy; 2026 Felipe Yabiko Nogueira.</p>
-                    <p class="time">Campinas, SP — <span id="local-time">Brasil</span></p>
-                </div>
-            </div>
+        <a href="mailto:fyabiko@gmail.com?subject=Vi%20seu%20portf%C3%B3lio" class="contact__big" data-cursor="e-mail">
+            <span class="contact__big-line" data-i18n="contactBig1">Vamos</span>
+            <span class="contact__big-line"><em data-i18n="contactBig2">conversar</em> <span class="contact__arrow" aria-hidden="true">→</span></span>
+        </a>
+
+        <div class="contact__row">
+            <button class="copy-mail mono" id="copy-mail" type="button" data-mail="fyabiko@gmail.com">
+                <span class="copy-mail__text">fyabiko@gmail.com</span>
+                <span class="copy-mail__hint" data-i18n="copy">copiar</span>
+            </button>
+            <nav class="contact__links mono" aria-label="Redes">
+                <a href="https://github.com/FelipeYabiko" target="_blank" rel="noopener" class="link-roll"><span>GitHub</span></a>
+                <a href="https://www.linkedin.com/in/felipe-yabiko-b57574379/" target="_blank" rel="noopener" class="link-roll"><span>LinkedIn</span></a>
+            </nav>
+        </div>
+
+        <div class="contact__foot mono">
+            <span>© 2026 Felipe Yabiko Nogueira</span>
+            <span data-i18n="footMade">Feito à mão, sem framework · HTML, CSS e JS</span>
+            <a href="#topo" class="link-roll"><span data-i18n="backTop">Voltar ao topo ↑</span></a>
         </div>
     </footer>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    <script src="app.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js" defer></script>
+    <script src="i18n.js" defer></script>
+    <script src="app.js" defer></script>
 </body>
 
 </html>
