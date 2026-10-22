@@ -125,7 +125,7 @@
        ====================================================================== */
     function iniciarRolagem() {
         if (!temGsap || !window.Lenis) return;
-        lenis = new Lenis({ lerp: 0.1, wheelMultiplier: 1 });
+        lenis = new Lenis({ lerp: 0.16, wheelMultiplier: 1 });
         lenis.on('scroll', ScrollTrigger.update);
         gsap.ticker.add(function (t) { lenis.raf(t * 1000); });
         gsap.ticker.lagSmoothing(0);
@@ -205,19 +205,6 @@
 
     botaoMenu.addEventListener('click', function () { menu.hidden ? abrirMenu() : fecharMenu(); });
     document.addEventListener('keydown', function (e) { if (e.key === 'Escape') fecharMenu(); });
-
-    /* ======================================================================
-       Relógio de Campinas
-       ====================================================================== */
-    function relogio() {
-        var el = document.getElementById('clock');
-        if (!el) return;
-        var f = function () {
-            el.textContent = new Intl.DateTimeFormat('pt-BR', { hour: '2-digit', minute: '2-digit', timeZone: 'America/Sao_Paulo' }).format(new Date());
-        };
-        f();
-        setInterval(f, 20000);
-    }
 
     /* ======================================================================
        Selic desde 2010 — dados do pipeline indicadores-br
@@ -498,22 +485,9 @@
             gsap.from(linhas, { opacity: 0, x: -8, duration: 0.3, stagger: 0.07, ease: 'none', scrollTrigger: { trigger: '.term', start: 'top 75%' } });
         }
 
-        // Cards empilhados: o de baixo encolhe quando o próximo cobre
-        ScrollTrigger.matchMedia({
-            '(min-width: 901px)': function () {
-                var cards = gsap.utils.toArray('.case');
-                cards.forEach(function (card, i) {
-                    var prox = cards[i + 1];
-                    if (!prox) return;
-                    gsap.to(card, {
-                        scale: 0.94, ease: 'none',
-                        scrollTrigger: { trigger: prox, start: 'top 70%', end: 'top 80px', scrub: true }
-                    });
-                });
-                gsap.utils.toArray('.case__media').forEach(function (m) {
-                    gsap.from(m, { y: 80, ease: 'none', scrollTrigger: { trigger: m.parentElement, start: 'top bottom', end: 'top 80px', scrub: true } });
-                });
-            }
+        // Cards dos projetos: entram uma vez, de leve, sem prender a rolagem
+        gsap.utils.toArray('.case').forEach(function (card) {
+            gsap.from(card, { y: 60, opacity: 0, duration: 1, ease: 'power3.out', scrollTrigger: { trigger: card, start: 'top 88%' } });
         });
     }
 
@@ -648,7 +622,6 @@
         else { prepararLinks(); dividirFrase(); atualizarIndicadores(); }
         dividirNome();
         ajustarNome();
-        relogio();
         cabecalho();
         iniciarRolagem();
         interacaoGrafico();

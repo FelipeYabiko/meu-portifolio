@@ -258,10 +258,10 @@ em {
 }
 
 .loader__count {
-    font-family: var(--mono);
     font-size: clamp(56px, 12vw, 180px);
     line-height: 0.8;
     letter-spacing: -0.06em;
+    font-variant-numeric: tabular-nums;
 }
 
 .loader__bar {
@@ -522,7 +522,8 @@ em {
 .hero__meta {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 6px;
+    font-size: 15px;
     color: var(--ink-2);
 }
 
@@ -619,6 +620,7 @@ em {
     display: inline-flex;
     align-items: center;
     gap: 8px;
+    font-size: 15px;
     color: var(--ink);
 }
 
@@ -633,10 +635,7 @@ em {
 }
 
 .hero__ticker dt {
-    font-family: var(--mono);
-    font-size: 11px;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
+    font-size: 13px;
     color: var(--ink-2);
 }
 
@@ -650,9 +649,7 @@ em {
 .hero__live-src {
     max-width: 34em;
     color: var(--ink-2);
-    font-size: 11px;
-    text-transform: none;
-    letter-spacing: 0.02em;
+    font-size: 13px;
 }
 
 .hero__name {
@@ -805,17 +802,9 @@ em {
     gap: clamp(16px, 2vw, 24px);
 }
 
-/* Cada card fica parado um trecho antes do próximo chegar */
-@media (min-width: 901px) {
-    .cases {
-        gap: 28vh;
-    }
-}
+
 
 .case {
-    position: sticky;
-    top: calc(var(--header) + 8px);
-    min-height: min(calc(100svh - var(--header) - 24px), 860px);
     display: grid;
     grid-template-columns: 5fr 7fr;
     gap: clamp(24px, 4vw, 72px);
@@ -824,8 +813,6 @@ em {
     border-radius: var(--radius);
     background: var(--case-bg);
     color: var(--case-fg);
-    transform-origin: 50% 0;
-    box-shadow: 0 -20px 60px rgba(15, 15, 14, 0.08);
 }
 
 .case__info {
@@ -1342,10 +1329,6 @@ a.index__row:hover .index__arrow {
    Responsivo
    -------------------------------------------------------------------------- */
 @media (max-width: 1100px) {
-    .header__clock {
-        display: none;
-    }
-
     .index__row {
         grid-template-columns: 3fr 5fr 32px;
     }
@@ -1435,9 +1418,6 @@ a.index__row:hover .index__arrow {
     }
 
     .case {
-        position: relative;
-        top: auto;
-        min-height: 0;
         grid-template-columns: 1fr;
     }
 

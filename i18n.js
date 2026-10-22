@@ -30,11 +30,10 @@ window.I18N = {
         navAbout: 'About',
         navPath: 'Experience',
         navContact: 'Contact',
-        clockCity: 'Campinas',
 
         status: 'Open to engineering roles',
         heroRole: 'Software engineering · Data · Automation · AI',
-        heroLede: 'I build software that solves real problems: <em>AI agents and MCP servers</em>, data pipelines and APIs — tested, with CI, and measured before I make a claim.',
+        heroLede: 'I build software that solves real problems: AI agents and MCP servers, data pipelines and APIs — tested, with CI, and measured before I make a claim.',
         liveTag: 'Live from my pipeline',
         tSelic: 'Selic rate',
         tIpca: 'CPI 12m',
