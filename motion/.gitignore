@@ -1,2 +1,7 @@
 node_modules
 out
+
+# Gravações das telas (geradas por captura/gravar-*.sh)
+.quadros
+public/deps
+public/partyrank

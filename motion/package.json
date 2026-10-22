@@ -6,12 +6,19 @@
   "scripts": {
     "dev": "remotion studio",
     "lint": "tsc",
-    "render:mercado": "remotion render Mercado out/mercado-master.mp4 --crf=16"
+    "render:mercado": "remotion render Mercado out/mercado-master.mp4 --crf=16",
+    "render:deps": "remotion render Deps out/deps-master.mp4 --crf=16",
+    "render:partyrank": "remotion render PartyRank out/party-ranking-master.mp4 --crf=16"
   },
   "dependencies": {
+    "@fontsource/antonio": "^5.3.0",
     "@fontsource/bowlby-one": "^5.0.0",
+    "@fontsource/bricolage-grotesque": "^5.3.0",
     "@fontsource/dm-mono": "^5.0.0",
+    "@fontsource/instrument-serif": "^5.3.0",
     "@fontsource/inter-tight": "^5.0.0",
+    "@fontsource/jetbrains-mono": "^5.3.0",
+    "@fontsource/manrope": "^5.3.0",
     "@remotion/cli": "4.0.534",
     "react": "19.2.3",
     "react-dom": "19.2.3",
@@ -19,6 +26,7 @@
   },
   "devDependencies": {
     "@types/react": "19.2.7",
+    "playwright": "^1.56.1",
     "typescript": "5.9.3"
   }
 }
