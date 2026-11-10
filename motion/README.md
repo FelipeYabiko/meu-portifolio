@@ -65,6 +65,13 @@ bash captura/gravar-partyrank.sh   # public/partyrank/*.mp4 + src/partyrank/cliq
 npm run render:partyrank           # out/party-ranking-master.mp4
 ```
 
+## Basaltinho — gravação direta (Playwright)
+
+Cinco trechos do `basalto-site` rodando local, gravados em 1200×900 com o
+`recordVideo` do Playwright (abertura, carrinho, pedido com Pix, comparador de
+diâmetros e o mascote) e juntados no FFmpeg com `xfade` de 0,35 s. O cursor
+que aparece é o do próprio site. Sem Remotion.
+
 ### Como a gravação funciona
 
 `captura/gravar.mjs` usa o screencast do Chrome (Playwright) e desacelera o

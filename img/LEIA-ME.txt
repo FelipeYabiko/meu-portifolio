@@ -5,6 +5,7 @@ Motions (loop 4:3, 1200x900, sem áudio) — como regerar em motion/README.md:
   mercado.mp4 / mercado.webm / mercado-poster.webp
   deps.mp4 / deps.webm / deps-poster.webp
   party-ranking.mp4 / party-ranking.webm / party-ranking-poster.webp
+  basaltinho.mp4 / basaltinho.webm / basaltinho-poster.webp
 
 O og.png (1200x630, na raiz) é a imagem do card de preview do
 WhatsApp e do LinkedIn.

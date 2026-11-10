@@ -98,6 +98,12 @@ window.I18N = {
         p6b: 'Tier lists with group consensus and a per-juror shuffled order, so nobody knows who added what',
         p6c: 'Bun backend on Turso (libSQL) and a Preact front end with no build step',
 
+        k7: 'Client pitch · Live',
+        p7Lede: 'A redesign for a concrete pipe manufacturer: a new brand, a mascot made of basalt and an online shop for gravel and mixes in 20 kg bags.',
+        p7a: 'A "from the quarry to the site" story told through scroll with GSAP, ScrollTrigger and Lenis, plus a pipe diameter comparison at human scale',
+        p7b: 'An SVG mascot that blinks, waves and follows the cursor with its eyes; the gravel inside each bag is drawn on canvas at that product\'s grain size',
+        p7c: 'A demo shop with a cart, postcode lookup and checkout by Pix, card or bank slip, with zero axe violations (WCAG 2.1 AA)',
+
         lblMore: 'More projects',
         moreTitle: 'Also <em>built</em>',
         private: 'private',
