@@ -1,0 +1,37 @@
+{
+	"env": {
+		"NODE_USE_ENV_PROXY": "1",
+		"NODE_NO_WARNINGS": "1"
+	},
+	"extraKnownMarketplaces": {
+		"claude-kit": {
+			"source": {
+				"source": "github",
+				"repo": "FelipeYabiko/claude-kit"
+			},
+			"autoUpdate": true
+		}
+	},
+	"enabledPlugins": {
+		"preferencias-felipe@claude-kit": true,
+		"aprendizado@claude-kit": true,
+		"fabrica@claude-kit": true
+	},
+	"hooks": {
+		"SessionStart": [
+			{
+				"hooks": [{"type": "command", "command": "node \"${CLAUDE_PROJECT_DIR}/.claude/hooks/inicio-da-sessao.mjs\""}]
+			}
+		],
+		"PreToolUse": [
+			{
+				"matcher": "Bash",
+				"hooks": [{"type": "command", "command": "node \"${CLAUDE_PROJECT_DIR}/.claude/hooks/antes-do-bash.mjs\""}]
+			},
+			{
+				"matcher": "Write|Edit|NotebookEdit",
+				"hooks": [{"type": "command", "command": "node \"${CLAUDE_PROJECT_DIR}/.claude/hooks/antes-de-editar.mjs\""}]
+			}
+		]
+	}
+}

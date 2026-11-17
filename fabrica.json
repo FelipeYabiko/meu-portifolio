@@ -1,0 +1,27 @@
+{
+	"fabrica": "0.1.1",
+	"tipo": "site",
+	"nome": "Portfólio de Felipe Yabiko",
+	"pastaDoSite": ".",
+	"adotadoEm": "2026-11-17",
+	"pecas": {
+		".claude/hooks/antes-de-editar.mjs": "c39884d338a2",
+		".claude/hooks/antes-do-bash.mjs": "582786bde244",
+		".claude/hooks/inicio-da-sessao.mjs": "bd3a187ae3ec",
+		".claude/hooks/regras.mjs": "2829127940ee",
+		"ferramentas/capa.mjs": "e0b9bed6b903",
+		"ferramentas/endereco.mjs": "802767b9f611",
+		"ferramentas/fiscal/cores.mjs": "fa911e2d3799",
+		"ferramentas/fiscal/html.mjs": "c5174b13fb3d",
+		"ferramentas/fiscal/nucleo.mjs": "b2ab285cc55b",
+		"ferramentas/fiscal/regras-gerais.mjs": "73971465abc8",
+		"ferramentas/fiscal/regras-paginas.mjs": "5612e83673b7",
+		"ferramentas/fiscal/regras-robo.mjs": "29558a331c9c",
+		"ferramentas/fiscal/regras-sistema.mjs": "5157d3767bef",
+		"ferramentas/fiscal.mjs": "406b2cab7da0",
+		"ferramentas/folha-de-telas.mjs": "a50d976260ac",
+		"ferramentas/servir.mjs": "c70431de54c4",
+		"ferramentas/telas.config.mjs": "2d56c5a9dcac"
+	},
+	"atualizadoEm": "2026-11-17"
+}

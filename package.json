@@ -1,0 +1,19 @@
+{
+	"name": "meu-portifolio",
+	"version": "0.1.0",
+	"private": true,
+	"type": "module",
+	"description": "Portfólio de engenheiro de software: quem sou, o que faço e os projetos, com vídeos em loop de cada um.",
+	"scripts": {
+		"verificar": "node ferramentas/fiscal.mjs --quieto && node --test \"tests/*.test.mjs\"",
+		"fiscal": "node ferramentas/fiscal.mjs",
+		"test": "node --test \"tests/*.test.mjs\"",
+		"ver": "node ferramentas/servir.mjs --abrir",
+		"telas": "node ferramentas/folha-de-telas.mjs",
+		"capa": "node ferramentas/capa.mjs",
+		"endereco": "node ferramentas/endereco.mjs"
+	},
+	"engines": {
+		"node": ">=22"
+	}
+}

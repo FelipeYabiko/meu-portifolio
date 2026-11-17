@@ -1,0 +1,9 @@
+# Mesmo fim de linha em todo computador; os atalhos do Windows precisam do deles
+* text=auto eol=lf
+*.bat text eol=crlf
+*.cmd text eol=crlf
+*.png binary
+*.jpg binary
+*.webp binary
+*.woff2 binary
+*.mp4 binary
